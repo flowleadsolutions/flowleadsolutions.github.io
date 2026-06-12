@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowLead Solutions | Precision Lead Management</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Libraries -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<header>
+  <div class="container nav-container">
+    <div class="logo">
+      <a href="index.html">
+        <img src="logo.png" alt="FlowLead Logo" class="logo-img">
+        <span>FlowLead</span>
+      </a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact" class="btn-nav">Get Started</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-bg-pattern"></div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+          <span class="badge-new">
+            <span class="pulse"></span>
+            Trusted by 50+ Sales Teams
+          </span>
+          <h1>Turn Messy Data Into <span class="text-gradient">Pure Revenue</span></h1>
+          <p>We eliminate the friction in your sales pipeline by handling the heavy lifting of lead cleaning, CRM hygiene, and follow-up preparation.</p>
+          <div class="hero-btns">
+            <button class="btn-primary" onclick="scrollToContact()">
+              Free Data Audit
+              <i data-lucide="arrow-right"></i>
+            </button>
+            <a href="#services" class="btn-secondary">View Services</a>
+          </div>
+        </div>
+        <div class="hero-visual" data-aos="zoom-in" data-aos-duration="1200">
+          <div class="floating-card c1">
+            <i data-lucide="check-circle" class="text-success"></i>
+            <div>
+              <small>Data Accuracy</small>
+              <strong>99.8%</strong>
+            </div>
+          </div>
+          <div class="floating-card c2">
+            <i data-lucide="trending-up" class="text-primary"></i>
+            <div>
+              <small>Leads Cleaned</small>
+              <strong>1.2M+</strong>
+            </div>
+          </div>
+          <div class="hero-image-container">
+            <div class="gradient-sphere"></div>
+            <img src="logo.png" alt="FlowLead Solutions" class="hero-logo">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats" data-aos="fade-up">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3 class="counter">99%</h3>
+          <p>Cleaning Accuracy</p>
+        </div>
+        <div class="stat-item">
+          <h3 class="counter">40%</h3>
+          <p>Time Saved for AEs</p>
+        </div>
+        <div class="stat-item">
+          <h3 class="counter">24h</h3>
+          <p>Turnaround Time</p>
+        </div>
+        <div class="stat-item">
+          <h3 class="counter">500+</h3>
+          <p>Clients Worldwide</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="sub-title">Expertise</span>
+        <h2>High-Impact Solutions</h2>
+        <p>Strategic data management to keep your sales engine running at peak performance.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-icon b-blue">
+            <i data-lucide="broom"></i>
+          </div>
+          <h3>Lead Cleanup</h3>
+          <p>Smart deduplication and standardization. We turn chaotic spreadsheets into organized gold mines.</p>
+          <ul class="card-list">
+            <li>Standardized Formatting</li>
+            <li>Advanced Deduplication</li>
+            <li>Enrichment Readiness</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-icon b-cyan">
+            <i data-lucide="database"></i>
+          </div>
+          <h3>CRM Hygiene</h3>
+          <p>Keep your HubSpot or Salesforce pristine. We fix outdated records and fill missing fields.</p>
+          <ul class="card-list">
+            <li>Automated Sync Checks</li>
+            <li>Field Mapping Optimization</li>
+            <li>Historical Data Cleanup</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="card-icon b-indigo">
+            <i data-lucide="mail-check"></i>
+          </div>
+          <h3>Inbox Prep</h3>
+          <p>Strategic follow-up organization. We ensure you never miss a high-intent lead again.</p>
+          <ul class="card-list">
+            <li>Priority Scoring</li>
+            <li>Sequence Readying</li>
+            <li>Response Tracking</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process" class="process">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="sub-title">Workflow</span>
+        <h2>How We Scale Your Growth</h2>
+      </div>
+      
+      <div class="process-steps">
+        <div class="step" data-aos="fade-up" data-aos-delay="100">
+          <div class="step-icon-wrapper">
+            <div class="step-number">1</div>
+            <i data-lucide="search"></i>
+          </div>
+          <div class="step-content">
+            <h4>Analyze</h4>
+            <p>We perform a deep-dive audit of your current data health and pipeline friction points.</p>
+          </div>
+        </div>
+        <div class="step" data-aos="fade-up" data-aos-delay="200">
+          <div class="step-icon-wrapper">
+            <div class="step-number">2</div>
+            <i data-lucide="zap"></i>
+          </div>
+          <div class="step-content">
+            <h4>Optimize</h4>
+            <p>Our experts apply proprietary frameworks to clean, fix, and organize your lead records.</p>
+          </div>
+        </div>
+        <div class="step" data-aos="fade-up" data-aos-delay="300">
+          <div class="step-icon-wrapper">
+            <div class="step-number">3</div>
+            <i data-lucide="refresh-cw"></i>
+          </div>
+          <div class="step-content">
+            <h4>Integrate</h4>
+            <p>Cleaned data is pushed back to your CRM, ready for your sales team to start closing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-wrapper">
+        <div class="about-content" data-aos="fade-right">
+          <span class="sub-title">Our Story</span>
+          <h2>Efficiency Through <span class="text-gradient">Precision</span></h2>
+          <p>Founded by sales operations experts, FlowLead Solutions was built to solve the #1 problem in modern sales: <strong>Dirty Data.</strong></p>
+          <p>We believe that your most talented sales people should be talking to prospects, not standardizing phone numbers or hunting for duplicates.</p>
+          <div class="about-features">
+            <div class="a-feat">
+              <i data-lucide="check-circle"></i>
+              <span>Human-in-the-loop accuracy</span>
+            </div>
+            <div class="a-feat">
+              <i data-lucide="check-circle"></i>
+              <span>Enterprise-grade security</span>
+            </div>
+            <div class="a-feat">
+              <i data-lucide="check-circle"></i>
+              <span>Seamless CRM native syncing</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-stats" data-aos="fade-left">
+          <div class="about-stat-card">
+            <h4>10M+</h4>
+            <p>Records Standardized</p>
+          </div>
+          <div class="about-stat-card">
+            <h4>$50M</h4>
+            <p>Pipeline Value Unlocked</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-wrapper" data-aos="fade-up">
+        <div class="contact-info">
+          <h2>Ready to <span class="text-gradient">Automate Your Data?</span></h2>
+          <p>Book a 15-minute discovery call and get a free lead-health assessment report.</p>
+          <div class="contact-items">
+            <div class="c-item">
+              <i data-lucide="mail"></i>
+              <span>hello@flowlead.com</span>
+            </div>
+            <div class="c-item">
+              <i data-lucide="calendar"></i>
+              <span>Book a Demo</span>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form-side">
+          <form id="contactForm">
+            <div class="form-grid">
+              <div class="input-group">
+                <label>Name</label>
+                <input type="text" placeholder="John Doe" required>
+              </div>
+              <div class="input-group">
+                <label>Work Email</label>
+                <input type="email" placeholder="john@company.com" required>
+              </div>
+            </div>
+            <div class="input-group">
+              <label>Message</label>
+              <textarea placeholder="How can we help your sales team?"></textarea>
+            </div>
+            <button type="submit" class="btn-primary full-width">Send Request</button>
+          </form>
+          <p id="successMsg"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <img src="logo.png" alt="FlowLead Logo" class="logo-img">
+          <span>FlowLead</span>
+        </div>
+        <p>Building the world's most reliable lead infrastructure.</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/profile.php?id=61570684821224" target="_blank" aria-label="Facebook"><img src="images/facebook.png" alt="Facebook"></a>
+          <a href="#" target="_blank" aria-label="Instagram"><img src="images/instagram.png" alt="Instagram"></a>
+          <a href="#" target="_blank" aria-label="LinkedIn"><img src="images/linkedin.png" alt="LinkedIn"></a>
+        </div>
+      </div>
+      <div class="footer-links-grid">
+        <div class="f-col">
+          <h4>Platform</h4>
+          <a href="#">Solutions</a>
+          <a href="#">Integrations</a>
+          <a href="#">Security</a>
+        </div>
+        <div class="f-col">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 FlowLead Solutions. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
