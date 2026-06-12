@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOLD Plumbing – Columbus, TX</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0B1B2B;
+    --navy-mid: #142236;
+    --steel: #1C3A55;
+    --sky: #3B87C2;
+    --sky-light: #5BA8E0;
+    --gold: #E8A320;
+    --gold-light: #F4C45E;
+    --white: #F8F5F0;
+    --muted: #A8B5C2;
+    --pipe: #2B4A66;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(11,27,43,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(59,135,194,0.2);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; letter-spacing: 0.1em;
+    color: var(--white);
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--muted);
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--navy);
+    border: none; padding: 0.65rem 1.6rem;
+    font-family: 'DM Sans', sans-serif; font-weight: 600;
+    font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.2s, transform 0.1s;
+    text-decoration: none; display: inline-block;
+  }
+  .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 7rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(59,135,194,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(232,163,32,0.06) 0%, transparent 70%);
+  }
+  .pipe-bg {
+    position: absolute; top: 0; right: 0; width: 55%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0.06;
+  }
+  .hero-content { position: relative; z-index: 2; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(59,135,194,0.15); border: 1px solid rgba(59,135,194,0.35);
+    padding: 0.4rem 1rem; margin-bottom: 1.5rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--sky-light);
+  }
+  .hero-badge::before { content: '★'; color: var(--gold); }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4.5rem, 8vw, 7.5rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: normal; display: block;
+    color: var(--gold);
+    text-shadow: 0 0 60px rgba(232,163,32,0.3);
+  }
+  .hero p {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 1.2rem; color: var(--muted);
+    max-width: 36ch; line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 1rem 2.2rem; text-decoration: none;
+    font-weight: 700; font-size: 0.9rem; letter-spacing: 0.06em;
+    text-transform: uppercase; transition: all 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid rgba(248,245,240,0.25); color: var(--white);
+    padding: 1rem 2.2rem; text-decoration: none;
+    font-weight: 500; font-size: 0.9rem; letter-spacing: 0.06em;
+    text-transform: uppercase; transition: all 0.2s; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--sky); color: var(--sky-light); }
+
+  /* hero visual */
+  .hero-visual {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 1.5rem;
+  }
+  .rating-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(59,135,194,0.2);
+    padding: 1.5rem 2rem; max-width: 280px; width: 100%;
+  }
+  .rating-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem; line-height: 1; color: var(--gold);
+    letter-spacing: 0.04em;
+  }
+  .stars { color: var(--gold); font-size: 1.2rem; letter-spacing: 0.1em; margin: 0.2rem 0; }
+  .rating-sub { font-size: 0.8rem; color: var(--muted); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+  .stat-row { display: flex; gap: 1rem; justify-content: flex-end; }
+  .stat-box {
+    background: var(--steel);
+    border-left: 3px solid var(--sky);
+    padding: 1rem 1.2rem; min-width: 110px;
+  }
+  .stat-box .n {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem; color: var(--white); line-height: 1;
+  }
+  .stat-box .l { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
+  .phone-badge {
+    display: flex; align-items: center; gap: 1rem;
+    background: var(--gold); padding: 1rem 1.5rem; color: var(--navy);
+    text-decoration: none; transition: background 0.2s, transform 0.1s;
+  }
+  .phone-badge:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .phone-badge .icon { font-size: 1.4rem; }
+  .phone-badge .num { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.06em; }
+  .phone-badge .sub { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.7; }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--sky);
+    overflow: hidden; height: 44px;
+    display: flex; align-items: center;
+  }
+  .ticker-track {
+    display: flex; gap: 4rem; animation: tick 25s linear infinite; white-space: nowrap;
+    padding: 0 2rem;
+  }
+  .ticker-track span {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--navy);
+  }
+  .ticker-track span::before { content: '◆ '; color: var(--gold); }
+  @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── SERVICES ── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--sky);
+    margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;
+  }
+  .section-label::before { content: ''; display: inline-block; width: 30px; height: 1px; background: var(--sky); }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1;
+    letter-spacing: 0.02em; margin-bottom: 0.5rem;
+  }
+  .section-title em { font-style: normal; color: var(--gold); }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px; margin-top: 3rem;
+    background: rgba(59,135,194,0.12);
+    border: 1px solid rgba(59,135,194,0.12);
+  }
+  .service-card {
+    background: var(--navy-mid);
+    padding: 2.5rem 2rem; position: relative; overflow: hidden;
+    transition: background 0.3s;
+  }
+  .service-card:hover { background: var(--steel); }
+  .service-card:hover .s-icon { transform: scale(1.15); color: var(--gold); }
+  .service-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; width: 0; height: 3px;
+    background: var(--gold); transition: width 0.35s ease;
+  }
+  .service-card:hover::after { width: 100%; }
+  .s-icon { font-size: 2.5rem; margin-bottom: 1.2rem; display: block; transition: all 0.3s; }
+  .service-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem; letter-spacing: 0.04em; margin-bottom: 0.75rem; color: var(--white);
+  }
+  .service-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+  .s-num {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem; color: rgba(59,135,194,0.08); line-height: 1;
+  }
+
+  /* ── WHY ── */
+  .why-section {
+    background: var(--navy-mid);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .why-visual { position: relative; }
+  .big-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(8rem, 15vw, 14rem);
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(59,135,194,0.25);
+    line-height: 0.85; user-select: none;
+  }
+  .big-number span { display: block; }
+  .big-number .accent { -webkit-text-stroke-color: rgba(232,163,32,0.3); }
+  .over-card {
+    position: absolute; bottom: -1rem; right: -1rem;
+    background: var(--gold); color: var(--navy);
+    padding: 1.5rem 2rem;
+  }
+  .over-card .oc-n { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; line-height: 1; }
+  .over-card .oc-l { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+  .why-list { list-style: none; margin-top: 2rem; }
+  .why-list li {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.2rem 0; border-bottom: 1px solid rgba(59,135,194,0.12);
+  }
+  .why-list li:last-child { border-bottom: none; }
+  .why-check {
+    width: 28px; height: 28px; background: rgba(59,135,194,0.15);
+    border: 1px solid rgba(59,135,194,0.3); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; color: var(--sky-light); margin-top: 2px;
+  }
+  .why-list li h4 { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.25rem; }
+  .why-list li p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── REVIEWS ── */
+  .reviews-section { background: var(--navy); }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .review-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(59,135,194,0.12);
+    padding: 2rem; position: relative; overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .review-card:hover { border-color: rgba(232,163,32,0.3); transform: translateY(-3px); }
+  .review-quote {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem; line-height: 0.8;
+    color: rgba(59,135,194,0.15); position: absolute; top: 1rem; right: 1.5rem;
+  }
+  .review-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.12em; margin-bottom: 1rem; }
+  .review-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+  .reviewer { display: flex; align-items: center; gap: 0.75rem; }
+  .rev-avatar {
+    width: 38px; height: 38px;
+    background: var(--steel); border: 1px solid rgba(59,135,194,0.3);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 700; color: var(--sky-light);
+  }
+  .rev-name { font-weight: 600; font-size: 0.9rem; }
+  .rev-date { font-size: 0.75rem; color: var(--muted); }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    background: var(--gold);
+    padding: 5rem 4rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .cta-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--navy); line-height: 1; letter-spacing: 0.02em;
+  }
+  .cta-section h2 span { display: block; font-size: 0.4em; font-family: 'DM Sans', sans-serif; font-weight: 400; opacity: 0.6; letter-spacing: 0; }
+  .cta-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-dark {
+    background: var(--navy); color: var(--white);
+    padding: 1rem 2.2rem; text-decoration: none;
+    font-weight: 700; font-size: 0.9rem; letter-spacing: 0.06em;
+    text-transform: uppercase; transition: all 0.2s; display: inline-block;
+  }
+  .btn-dark:hover { background: var(--navy-mid); transform: translateY(-2px); }
+  .btn-ghost-dark {
+    border: 2px solid var(--navy); color: var(--navy);
+    padding: 1rem 2.2rem; text-decoration: none;
+    font-weight: 600; font-size: 0.9rem; letter-spacing: 0.06em;
+    text-transform: uppercase; transition: all 0.2s; display: inline-block;
+  }
+  .btn-ghost-dark:hover { background: rgba(11,27,43,0.1); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060F18;
+    padding: 4rem 4rem 2rem;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem; letter-spacing: 0.1em; margin-bottom: 1rem; color: var(--white);
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; max-width: 26ch; margin-bottom: 1.5rem; }
+  .footer-phone {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-weight: 700; color: var(--gold); text-decoration: none; font-size: 1.1rem;
+  }
+  .footer-col h4 {
+    font-weight: 700; font-size: 0.75rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--white); margin-bottom: 1rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.6rem; }
+  .footer-col ul li a {
+    font-size: 0.85rem; color: var(--muted); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-bottom p { font-size: 0.78rem; color: var(--muted); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * { animation: fadeUp 0.7s ease both; }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.4s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.55s; }
+  .hero-visual > * { animation: fadeUp 0.7s ease both; }
+  .hero-visual > *:nth-child(1) { animation-delay: 0.5s; }
+  .hero-visual > *:nth-child(2) { animation-delay: 0.65s; }
+  .hero-visual > *:nth-child(3) { animation-delay: 0.8s; }
+
+  /* ── PIPE DECORATION SVG ── */
+  .pipe-deco {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.05;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links, .nav-cta { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; gap: 3rem; }
+    .hero-visual { align-items: flex-start; }
+    .stat-row { justify-content: flex-start; }
+    section { padding: 4rem 1.5rem; }
+    .why-section { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .cta-section { padding: 3rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">BOLD<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:+19797330626" class="nav-cta">📞 Call Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- decorative pipe SVG -->
+  <svg class="pipe-deco" style="right:-50px;top:0;width:700px;height:100vh;" viewBox="0 0 700 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="350" y="0" width="60" height="500" rx="4" fill="#3B87C2"/>
+    <rect x="340" y="490" width="80" height="12" rx="4" fill="#3B87C2"/>
+    <rect x="290" y="500" width="60" height="400" rx="4" fill="#3B87C2"/>
+    <rect x="280" y="490" width="80" height="20" rx="4" fill="#5BA8E0"/>
+    <rect x="450" y="200" width="250" height="55" rx="4" fill="#3B87C2"/>
+    <rect x="440" y="190" width="20" height="75" rx="4" fill="#5BA8E0"/>
+    <circle cx="440" cy="227" r="22" fill="none" stroke="#3B87C2" stroke-width="10"/>
+    <rect x="100" y="600" width="200" height="55" rx="4" fill="#3B87C2"/>
+    <rect x="280" y="595" width="20" height="65" rx="4" fill="#5BA8E0"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-badge">4.8 Stars · 36 Reviews · Columbus, TX</div>
+    <h1>
+      WHEN IT<br>
+      LEAKS, CALL<br>
+      <em>BOLD.</em>
+    </h1>
+    <p>Professional plumbing services in Columbus, TX — from emergency repairs to full sewer camera inspections. Done right, the first time.</p>
+    <div class="hero-btns">
+      <a href="tel:+19797330626" class="btn-primary">📞 979-733-0626</a>
+      <a href="https://boldplumbing.com" class="btn-outline">Get a Free Quote →</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <a href="tel:+19797330626" class="phone-badge">
+      <span class="icon">📞</span>
+      <div>
+        <div class="num">979-733-0626</div>
+        <div class="sub">Available Mon–Fri, 8AM</div>
+      </div>
+    </a>
+    <div class="rating-card">
+      <div class="rating-num">4.8</div>
+      <div class="stars">★★★★★</div>
+      <div class="rating-sub">Based on 36 Google Reviews</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="n">36+</div>
+        <div class="l">Happy Clients</div>
+      </div>
+      <div class="stat-box">
+        <div class="n">100%</div>
+        <div class="l">Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Emergency Repairs</span><span>Camera Inspections</span><span>Water Heaters</span>
+    <span>Sewer Line Replacement</span><span>Cutoff Valves</span><span>Drain Cleaning</span>
+    <span>Columbus TX</span><span>Honest Pricing</span><span>Prompt Service</span>
+    <span>Emergency Repairs</span><span>Camera Inspections</span><span>Water Heaters</span>
+    <span>Sewer Line Replacement</span><span>Cutoff Valves</span><span>Drain Cleaning</span>
+    <span>Columbus TX</span><span>Honest Pricing</span><span>Prompt Service</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">What We Do</div>
+  <div class="section-title">Services Built for<br><em>Real Problems</em></div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="s-num">01</span>
+      <span class="s-icon">🔭</span>
+      <h3>Camera Inspections</h3>
+      <p>Waterproof sewer & pipe cameras pinpoint blockages, cracks, root intrusion — without ever digging up your yard.</p>
+    </div>
+    <div class="service-card">
+      <span class="s-num">02</span>
+      <span class="s-icon">🔧</span>
+      <h3>Valve & Cutoff Replacement</h3>
+      <p>All cutoff valves replaced with precision and speed. Frankie and Dakota know their craft inside out.</p>
+    </div>
+    <div class="service-card">
+      <span class="s-num">03</span>
+      <span class="s-icon">🌡️</span>
+      <h3>Water Heater Service</h3>
+      <p>Heating element replacement, full installs, and diagnostics — we'll get your hot water back fast.</p>
+    </div>
+    <div class="service-card">
+      <span class="s-num">04</span>
+      <span class="s-icon">🚿</span>
+      <h3>Sewer Line Replacement</h3>
+      <p>From assessment to full replacement of sewer lines — straight with you every step of the way.</p>
+    </div>
+    <div class="service-card">
+      <span class="s-num">05</span>
+      <span class="s-icon">💧</span>
+      <h3>Drain Cleaning</h3>
+      <p>Stubborn clogs cleared efficiently. We prevent costly spring and summer backups before they happen.</p>
+    </div>
+    <div class="service-card">
+      <span class="s-num">06</span>
+      <span class="s-icon">🏠</span>
+      <h3>Spring Plumbing Checkup</h3>
+      <p>Comprehensive seasonal inspection to ensure your system is ready for the months ahead — early detection saves money.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why" class="why-section">
+  <div class="why-visual">
+    <div class="big-number">
+      <span>4.</span>
+      <span class="accent">8★</span>
+    </div>
+    <div class="over-card">
+      <div class="oc-n">36+</div>
+      <div class="oc-l">Five-Star Reviews</div>
+    </div>
+  </div>
+  <div>
+    <div class="section-label">Why Choose Bold</div>
+    <div class="section-title">Plumbers You Can<br><em>Trust</em></div>
+    <ul class="why-list">
+      <li>
+        <div class="why-check">✓</div>
+        <div>
+          <h4>They Show Up When They Say</h4>
+          <p>"They came when they said" — every review says the same thing. Your time matters to us.</p>
+        </div>
+      </li>
+      <li>
+        <div class="why-check">✓</div>
+        <div>
+          <h4>Honest, Fair Pricing</h4>
+          <p>No surprise bills. We tell you what it costs up front and stick to it. Always.</p>
+        </div>
+      </li>
+      <li>
+        <div class="why-check">✓</div>
+        <div>
+          <h4>Experienced Technicians</h4>
+          <p>Frankie and Dakota bring real expertise to every job. Efficient, thorough, and professional.</p>
+        </div>
+      </li>
+      <li>
+        <div class="why-check">✓</div>
+        <div>
+          <h4>Non-Invasive Camera Technology</h4>
+          <p>See exactly what's wrong before we touch a shovel — saving you time, money, and your lawn.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="reviews-section">
+  <div class="section-label">Real Customers</div>
+  <div class="section-title">What Columbus Is<br><em>Saying</em></div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p>They worked very efficiently and did a great job replacing all my cutoffs and the heating element in my hot water heater. I would highly recommend.</p>
+      <div class="reviewer">
+        <div class="rev-avatar">JM</div>
+        <div>
+          <div class="rev-name">Josh Melnar</div>
+          <div class="rev-date">5 months ago</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p>They came when they said and everyone was straight with you. I needed sewer lines replaced — after so many bad experiences with other services, these guys delivered.</p>
+      <div class="reviewer">
+        <div class="rev-avatar">AJ</div>
+        <div>
+          <div class="rev-name">Anna Johnston</div>
+          <div class="rev-date">7 months ago</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p>Frankie and Dakota were prompt, thorough, and know their craft. I am glad to know we have found them and Bold Plumbing.</p>
+      <div class="reviewer">
+        <div class="rev-avatar">BS</div>
+        <div>
+          <div class="rev-name">Brittany Scarff</div>
+          <div class="rev-date">4 months ago</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta-section">
+  <div>
+    <h2>
+      <span>Ready to fix it right?</span>
+      Don't Wait For<br>A Small Issue To<br>Become A Big One.
+    </h2>
+  </div>
+  <div class="cta-btns">
+    <a href="tel:+19797330626" class="btn-dark">📞 Call 979-733-0626</a>
+    <a href="https://boldplumbing.com" class="btn-ghost-dark">Request a Quote →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">BOLD<span>.</span></div>
+      <p class="footer-desc">Professional plumbing you can count on in Columbus, TX. Serving the community with honesty, efficiency, and expertise.</p>
+      <a href="tel:+19797330626" class="footer-phone">📞 979-733-0626</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Camera Inspections</a></li>
+        <li><a href="#">Sewer Line Replacement</a></li>
+        <li><a href="#">Water Heater Service</a></li>
+        <li><a href="#">Drain Cleaning</a></li>
+        <li><a href="#">Valve Replacement</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Request a Quote</a></li>
+        <li><a href="https://boldplumbing.com">boldplumbing.com</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">1203 Travis St</a></li>
+        <li><a href="#">Columbus, TX 78934</a></li>
+        <li><a href="#">Mon–Fri: 8AM–5PM</a></li>
+        <li><a href="tel:+19797330626">979-733-0626</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 BOLD Plumbing. All rights reserved. Columbus, TX.</p>
+    <p style="color:#3B87C2;">4.8 ★ on Google · 36 Reviews</p>
+  </div>
+</footer>
+
+</body>
+</html>

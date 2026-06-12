@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Northstar Plumbing LLC – San Antonio, TX</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --midnight: #050C1A;
+  --deep: #080F1F;
+  --navy: #0A1628;
+  --ink: #0D1F3C;
+  --steel: #132D52;
+  --slate: #1E4275;
+  --sky: #2A6CC4;
+  --ice: #6AADE4;
+  --star: #E8D97A;
+  --star-pale: #F5EFB8;
+  --cream: #F2EEE8;
+  --white: #FAFAF8;
+  --muted: #8A9DB5;
+  --soft: #4A6280;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--white);
+  color: var(--navy);
+  overflow-x: hidden;
+}
+
+/* STAR CANVAS */
+#star-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem 5rem;
+  transition: all 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(255,250,248,0.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(42,108,196,0.12);
+  padding: 1rem 5rem;
+  box-shadow: 0 2px 30px rgba(5,12,26,0.06);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 0.6rem; text-decoration: none;
+}
+.logo-star {
+  width: 34px; height: 34px;
+  position: relative; display: flex; align-items: center; justify-content: center;
+}
+.logo-star svg { width: 34px; height: 34px; }
+.logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 600;
+  color: var(--navy); letter-spacing: 0.04em;
+}
+.logo-text span { color: var(--sky); }
+nav.dark-nav .logo-text { color: var(--white); }
+nav.dark-nav .nav-link { color: rgba(255,255,255,0.65); }
+nav.dark-nav .nav-link:hover { color: var(--star); }
+nav.dark-nav .nav-call { border-color: rgba(232,217,122,0.5); color: var(--star); }
+nav.dark-nav .nav-call:hover { background: var(--star); color: var(--navy); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-link {
+  text-decoration: none; color: var(--soft);
+  font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; transition: color 0.2s;
+}
+.nav-link:hover { color: var(--sky); }
+.nav-call {
+  border: 1px solid rgba(42,108,196,0.4); color: var(--sky);
+  padding: 0.6rem 1.4rem; font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  text-decoration: none; transition: all 0.25s;
+}
+.nav-call:hover { background: var(--sky); color: var(--white); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: var(--midnight);
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 8rem 2rem 5rem; text-align: center;
+}
+
+/* Star field dots */
+.stars-bg {
+  position: absolute; inset: 0; overflow: hidden;
+}
+.star-dot {
+  position: absolute; border-radius: 50%;
+  background: white; animation: twinkle var(--dur, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes twinkle {
+  0%, 100% { opacity: var(--dim, 0.2); transform: scale(1); }
+  50% { opacity: var(--bright, 0.8); transform: scale(1.4); }
+}
+
+/* Glow orb */
+.hero-glow {
+  position: absolute;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(42,108,196,0.18) 0%, rgba(42,108,196,0.06) 40%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  animation: pulse-glow 6s ease-in-out infinite;
+}
+@keyframes pulse-glow {
+  0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 0.8; }
+  50% { transform: translate(-50%,-50%) scale(1.12); opacity: 1; }
+}
+
+/* North star icon */
+.hero-star {
+  position: relative; margin-bottom: 2.5rem; z-index: 2;
+  animation: star-spin 20s linear infinite;
+}
+@keyframes star-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.hero-eyebrow {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--star);
+  margin-bottom: 1.5rem; z-index: 2; position: relative;
+  display: flex; align-items: center; gap: 1rem;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ''; display: inline-block; width: 40px; height: 1px;
+  background: linear-gradient(to right, transparent, var(--star));
+}
+.hero-eyebrow::after { background: linear-gradient(to left, transparent, var(--star)); }
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  font-weight: 300; line-height: 1.0;
+  color: var(--white); letter-spacing: -0.01em;
+  z-index: 2; position: relative; margin-bottom: 0.5rem;
+}
+.hero h1 em {
+  font-style: italic; color: var(--star);
+  display: block;
+}
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 300; font-style: italic;
+  color: var(--muted); z-index: 2; position: relative;
+  margin-bottom: 3rem; max-width: 44ch; line-height: 1.6;
+}
+.hero-actions {
+  display: flex; gap: 1.2rem; flex-wrap: wrap;
+  justify-content: center; z-index: 2; position: relative;
+  margin-bottom: 4rem;
+}
+.btn-star {
+  background: var(--star); color: var(--midnight);
+  padding: 1rem 2.5rem; text-decoration: none;
+  font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em;
+  text-transform: uppercase; transition: all 0.25s; display: inline-block;
+  position: relative; overflow: hidden;
+}
+.btn-star::before {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(255,255,255,0.15); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s;
+}
+.btn-star:hover::before { transform: scaleX(1); }
+.btn-star:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(232,217,122,0.3); }
+.btn-ghost-light {
+  border: 1px solid rgba(255,255,255,0.2); color: var(--white);
+  padding: 1rem 2.5rem; text-decoration: none;
+  font-weight: 400; font-size: 0.85rem; letter-spacing: 0.08em;
+  text-transform: uppercase; transition: all 0.25s; display: inline-block;
+}
+.btn-ghost-light:hover { border-color: var(--star); color: var(--star); }
+
+/* Hero trust strip */
+.hero-trust {
+  display: flex; gap: 3rem; z-index: 2; position: relative;
+  flex-wrap: wrap; justify-content: center;
+}
+.trust-item {
+  display: flex; flex-direction: column; align-items: center; gap: 0.3rem;
+}
+.trust-item .t-n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem; font-weight: 600; color: var(--star); line-height: 1;
+}
+.trust-item .t-l {
+  font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em;
+  text-transform: uppercase; font-weight: 500;
+}
+.trust-divider {
+  width: 1px; background: rgba(255,255,255,0.1); align-self: stretch;
+}
+
+/* Scroll indicator */
+.scroll-ind {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  z-index: 2; color: var(--muted);
+}
+.scroll-ind span { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; }
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--muted), transparent);
+  animation: scroll-drop 1.8s ease-in-out infinite;
+}
+@keyframes scroll-drop {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ── INTRO STRIP ── */
+.intro-strip {
+  background: var(--sky);
+  padding: 1.5rem 5rem;
+  display: flex; align-items: center; justify-content: center; gap: 4rem;
+  flex-wrap: wrap;
+}
+.intro-strip span {
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--white);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.intro-strip span::before { content: '✦'; color: var(--star); font-size: 0.6rem; }
+
+/* ── SERVICES ── */
+.services-section {
+  padding: 8rem 5rem;
+  background: var(--white);
+}
+.section-header { margin-bottom: 5rem; }
+.eyebrow {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--sky);
+  display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;
+}
+.eyebrow::before { content: '✦'; font-size: 0.55rem; }
+.section-h {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 300; line-height: 1.05; color: var(--navy);
+  letter-spacing: -0.01em;
+}
+.section-h em { font-style: italic; color: var(--sky); }
+.section-p {
+  font-size: 0.95rem; color: var(--soft); line-height: 1.8;
+  max-width: 44ch; margin-top: 1rem;
+}
+
+.services-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; border: 1px solid rgba(42,108,196,0.1);
+}
+.svc-card {
+  padding: 3rem 2.5rem;
+  border: 0.5px solid rgba(42,108,196,0.1);
+  position: relative; overflow: hidden;
+  transition: background 0.35s;
+  cursor: default;
+}
+.svc-card:hover { background: var(--navy); }
+.svc-card:hover .svc-n { color: rgba(232,217,122,0.08); }
+.svc-card:hover .svc-icon-wrap { background: rgba(232,217,122,0.12); border-color: rgba(232,217,122,0.25); }
+.svc-card:hover h3 { color: var(--white); }
+.svc-card:hover p { color: var(--muted); }
+.svc-card:hover .svc-tag { background: rgba(232,217,122,0.12); color: var(--star); border-color: rgba(232,217,122,0.2); }
+.svc-n {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem; font-weight: 300;
+  color: rgba(42,108,196,0.07); line-height: 1; transition: color 0.35s;
+}
+.svc-icon-wrap {
+  width: 48px; height: 48px;
+  background: rgba(42,108,196,0.08); border: 1px solid rgba(42,108,196,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; margin-bottom: 1.5rem;
+  transition: all 0.35s;
+}
+.svc-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 600; margin-bottom: 0.75rem;
+  color: var(--navy); letter-spacing: 0.01em; transition: color 0.35s;
+}
+.svc-card p {
+  font-size: 0.87rem; color: var(--soft); line-height: 1.75; transition: color 0.35s;
+}
+.svc-tag {
+  display: inline-block; margin-top: 1.2rem;
+  padding: 0.3rem 0.8rem; font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  background: rgba(42,108,196,0.08); color: var(--sky);
+  border: 1px solid rgba(42,108,196,0.15); transition: all 0.35s;
+}
+
+/* ── PROOF SECTION ── */
+.proof-section {
+  background: var(--navy);
+  padding: 8rem 5rem;
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 6rem; align-items: center;
+}
+.proof-left .eyebrow { color: var(--star); }
+.proof-left .section-h { color: var(--white); }
+.proof-left .section-p { color: var(--muted); }
+.proof-score {
+  margin-top: 3rem;
+  display: flex; align-items: flex-end; gap: 1.5rem;
+}
+.ps-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 8rem; font-weight: 300; line-height: 0.85;
+  color: var(--star); letter-spacing: -0.04em;
+}
+.ps-meta { padding-bottom: 1rem; }
+.ps-stars { color: var(--star); font-size: 1.1rem; letter-spacing: 0.1em; }
+.ps-count { font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+
+.reviews-stack { display: flex; flex-direction: column; gap: 1.5rem; }
+.rev-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-left: 3px solid var(--sky);
+  padding: 1.75rem 2rem;
+  transition: border-left-color 0.25s, background 0.25s;
+}
+.rev-card:hover { background: rgba(255,255,255,0.07); border-left-color: var(--star); }
+.rev-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+.rev-person { display: flex; align-items: center; gap: 0.75rem; }
+.rev-av {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; font-weight: 700; flex-shrink: 0;
+}
+.av-1 { background: rgba(106,173,228,0.15); color: var(--ice); border: 1px solid rgba(106,173,228,0.25); }
+.av-2 { background: rgba(232,217,122,0.1); color: var(--star); border: 1px solid rgba(232,217,122,0.2); }
+.av-3 { background: rgba(42,108,196,0.15); color: var(--ice); border: 1px solid rgba(42,108,196,0.25); }
+.rev-name { font-weight: 600; font-size: 0.9rem; color: var(--white); }
+.rev-badge { font-size: 0.68rem; color: var(--ice); letter-spacing: 0.05em; margin-top: 0.15rem; }
+.rev-stars { color: var(--star); font-size: 0.8rem; letter-spacing: 0.1em; }
+.rev-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.75; font-style: italic; }
+.rev-ago { font-size: 0.72rem; color: var(--soft); margin-top: 0.75rem; }
+
+/* ── DIFFERENTIATORS ── */
+.diff-section {
+  padding: 8rem 5rem;
+  background: var(--cream);
+}
+.diff-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2rem; margin-top: 4rem;
+}
+.diff-card {
+  background: var(--white);
+  border: 1px solid rgba(42,108,196,0.08);
+  padding: 2.5rem 1.75rem;
+  position: relative;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.diff-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(5,12,26,0.08); }
+.diff-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem; font-weight: 300;
+  color: rgba(42,108,196,0.12); position: absolute;
+  top: 1.25rem; right: 1.25rem; line-height: 1;
+}
+.diff-icon { font-size: 1.75rem; margin-bottom: 1.25rem; display: block; }
+.diff-card h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 600; color: var(--navy); margin-bottom: 0.6rem;
+}
+.diff-card p { font-size: 0.83rem; color: var(--soft); line-height: 1.75; }
+.diff-line {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, var(--sky), var(--star));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+}
+.diff-card:hover .diff-line { transform: scaleX(1); }
+
+/* ── PROCESS ── */
+.process-section {
+  padding: 8rem 5rem;
+  background: var(--white);
+}
+.process-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; margin-top: 4rem; position: relative;
+}
+.process-steps::before {
+  content: '';
+  position: absolute; top: 3rem; left: calc(12.5% + 1.5rem); right: calc(12.5% + 1.5rem);
+  height: 1px; background: linear-gradient(to right, var(--sky), var(--ice), var(--star));
+  z-index: 0;
+}
+.step {
+  text-align: center; padding: 0 1.5rem; position: relative; z-index: 1;
+}
+.step-circle {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--white); border: 1px solid rgba(42,108,196,0.2);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.5rem; font-size: 1.3rem;
+  position: relative; z-index: 1;
+  transition: all 0.25s;
+}
+.step:hover .step-circle {
+  background: var(--navy); border-color: var(--navy);
+  transform: scale(1.1);
+}
+.step h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem;
+}
+.step p { font-size: 0.82rem; color: var(--soft); line-height: 1.7; }
+
+/* ── CTA ── */
+.cta-section {
+  background: var(--midnight);
+  padding: 8rem 5rem;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-star-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(42,108,196,0.12) 0%, transparent 70%);
+}
+.cta-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 6vw, 5.5rem); font-weight: 300;
+  color: var(--white); line-height: 1.05; letter-spacing: -0.01em;
+  position: relative; z-index: 1; margin-bottom: 1rem;
+}
+.cta-section h2 em { font-style: italic; color: var(--star); }
+.cta-section p {
+  font-size: 1rem; color: var(--muted); line-height: 1.7;
+  max-width: 42ch; margin: 0 auto 3rem; position: relative; z-index: 1;
+}
+.cta-btns { display: flex; gap: 1.2rem; justify-content: center; position: relative; z-index: 1; flex-wrap: wrap; }
+.cta-phone {
+  margin-top: 3rem; position: relative; z-index: 1;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem; font-weight: 300; color: var(--white);
+  text-decoration: none; display: block;
+  transition: color 0.25s;
+}
+.cta-phone:hover { color: var(--star); }
+.cta-phone span { font-size: 0.75rem; font-family: 'Outfit', sans-serif; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.25rem; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--deep);
+  padding: 5rem 5rem 2.5rem;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 4rem; margin-bottom: 4rem;
+}
+.footer-logo-wrap .logo-text { color: var(--white); }
+.footer-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.8; margin: 1rem 0 1.5rem; max-width: 24ch; }
+.footer-contact a {
+  display: block; color: var(--ice); text-decoration: none;
+  font-size: 0.88rem; margin-bottom: 0.4rem; transition: color 0.2s;
+}
+.footer-contact a:hover { color: var(--star); }
+.footer-col h5 {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--white); margin-bottom: 1.2rem;
+}
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 0.6rem; }
+.footer-col a {
+  text-decoration: none; color: var(--muted); font-size: 0.85rem;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--star); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 2rem;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.footer-bottom p { font-size: 0.78rem; color: var(--muted); }
+.footer-rating { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--muted); }
+.footer-rating .stars { color: var(--star); font-size: 0.7rem; letter-spacing: 0.06em; }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero > * { animation: fadeUp 0.9s ease both; }
+.hero > *:nth-child(2) { animation-delay: 0.1s; }
+.hero > *:nth-child(3) { animation-delay: 0.2s; }
+.hero > *:nth-child(4) { animation-delay: 0.35s; }
+.hero > *:nth-child(5) { animation-delay: 0.5s; }
+.hero > *:nth-child(6) { animation-delay: 0.65s; }
+.hero > *:nth-child(7) { animation-delay: 0.8s; }
+
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hero { padding: 7rem 1.5rem 4rem; }
+  .hero-trust { gap: 1.5rem; }
+  .trust-divider { display: none; }
+  section, .services-section, .proof-section, .diff-section, .process-section, .cta-section { padding: 5rem 1.5rem; }
+  .intro-strip { padding: 1.5rem; gap: 1.5rem; }
+  .services-layout { grid-template-columns: 1fr; }
+  .proof-section { grid-template-columns: 1fr; gap: 3rem; }
+  .diff-grid { grid-template-columns: 1fr 1fr; }
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .process-steps::before { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="dark-nav" id="main-nav">
+  <a class="nav-logo" href="#">
+    <div class="logo-star">
+      <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17 2L19.5 14.5L32 17L19.5 19.5L17 32L14.5 19.5L2 17L14.5 14.5L17 2Z" fill="#E8D97A" opacity="0.9"/>
+        <circle cx="17" cy="17" r="3" fill="#E8D97A"/>
+      </svg>
+    </div>
+    <div class="logo-text">Northstar<span> Plumbing</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services" class="nav-link">Services</a></li>
+    <li><a href="#reviews" class="nav-link">Reviews</a></li>
+    <li><a href="#process" class="nav-link">Our Process</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+  </ul>
+  <a href="tel:+12103040212" class="nav-call">✦ 210-304-0212</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <!-- Animated star field -->
+  <div class="stars-bg" aria-hidden="true" id="star-field"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="hero-eyebrow" style="position:relative;z-index:2;">San Antonio, TX · Licensed Master Plumbers</div>
+
+  <div class="hero-star" aria-hidden="true">
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M32 4L35.5 28.5L60 32L35.5 35.5L32 60L28.5 35.5L4 32L28.5 28.5L32 4Z" fill="#E8D97A" opacity="0.95"/>
+      <circle cx="32" cy="32" r="5" fill="#E8D97A"/>
+      <circle cx="32" cy="32" r="18" stroke="rgba(232,217,122,0.2)" stroke-width="1"/>
+      <circle cx="32" cy="32" r="28" stroke="rgba(232,217,122,0.08)" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <h1>Guided By<br><em>5-Star Service</em></h1>
+  <p class="hero-sub">San Antonio's most trusted plumbers — where every repair is a promise, and every promise is kept.</p>
+
+  <div class="hero-actions">
+    <a href="tel:+12103040212" class="btn-star">✦ Call 210-304-0212</a>
+    <a href="https://northstar33.com" class="btn-ghost-light">Get a Free Quote →</a>
+  </div>
+
+  <div class="hero-trust">
+    <div class="trust-item">
+      <div class="t-n">5.0</div>
+      <div class="t-l">Google Rating</div>
+    </div>
+    <div class="trust-divider" aria-hidden="true"></div>
+    <div class="trust-item">
+      <div class="t-n">118</div>
+      <div class="t-l">Verified Reviews</div>
+    </div>
+    <div class="trust-divider" aria-hidden="true"></div>
+    <div class="trust-item">
+      <div class="t-n">100%</div>
+      <div class="t-l">5-Star Rated</div>
+    </div>
+  </div>
+
+  <div class="scroll-ind" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip">
+  <span>Leak Repair</span>
+  <span>Water Heaters</span>
+  <span>Water Softeners</span>
+  <span>Master Plumbers</span>
+  <span>Transparent Pricing</span>
+  <span>Same-Day Service</span>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="section-header">
+    <div class="eyebrow">Our Services</div>
+    <div class="section-h">Precision Plumbing for<br><em>Every Situation</em></div>
+    <p class="section-p">From emergency leaks to full system upgrades — we handle it with expertise, transparency, and care.</p>
+  </div>
+
+  <div class="services-layout">
+    <div class="svc-card">
+      <div class="svc-n">01</div>
+      <div class="svc-icon-wrap">🔍</div>
+      <h3>Leak Detection & Repair</h3>
+      <p>Precise identification and repair of leaks — from hidden pipe failures to visible drips. We explain what's happening every step of the way.</p>
+      <div class="svc-tag">Most Requested</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-n">02</div>
+      <div class="svc-icon-wrap">🌡️</div>
+      <h3>Water Heater Services</h3>
+      <p>Full water heater diagnostics, repair, and replacement. We've saved Thanksgiving dinners and restored comfort to families in crisis — same day.</p>
+      <div class="svc-tag">Emergency Available</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-n">03</div>
+      <div class="svc-icon-wrap">💧</div>
+      <h3>Water Softener Installation</h3>
+      <p>Hard water destroying your fixtures? We install and service water softener systems that extend the life of your entire plumbing system.</p>
+      <div class="svc-tag">Popular in SA</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-n">04</div>
+      <div class="svc-icon-wrap">📊</div>
+      <h3>Water Pressure Restoration</h3>
+      <p>Low pressure throughout your home? We diagnose and resolve pressure issues from the source — no guesswork, no unnecessary upsells.</p>
+      <div class="svc-tag">Fast Resolution</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-n">05</div>
+      <div class="svc-icon-wrap">🔧</div>
+      <h3>Full Plumbing Repairs</h3>
+      <p>Valves, fixtures, pipes, and everything in between. Our master plumbers bring the skills to handle any residential or light commercial job.</p>
+      <div class="svc-tag">Licensed Masters</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-n">06</div>
+      <div class="svc-icon-wrap">🏠</div>
+      <h3>New Installation & Upgrades</h3>
+      <p>Upgrading your bathroom, kitchen, or utility room? We handle new installs with the same meticulous care we bring to every repair.</p>
+      <div class="svc-tag">Full Service</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF / REVIEWS -->
+<section class="proof-section" id="reviews">
+  <div class="proof-left">
+    <div class="eyebrow" style="color:var(--star);">What Clients Say</div>
+    <div class="section-h" style="color:var(--white);">A Perfect Score,<br><em>Earned Every Time</em></div>
+    <p class="section-p" style="color:var(--muted);">118 reviews. 118 five-star ratings. Not an accident — it's how we work every single day.</p>
+    <div class="proof-score">
+      <div class="ps-number">5.0</div>
+      <div class="ps-meta">
+        <div class="ps-stars">★★★★★</div>
+        <div class="ps-count">118 Google Reviews · Perfect Score</div>
+      </div>
+    </div>
+  </div>
+  <div class="reviews-stack">
+    <div class="rev-card">
+      <div class="rev-header">
+        <div class="rev-person">
+          <div class="rev-av av-1">S</div>
+          <div>
+            <div class="rev-name">She</div>
+            <div class="rev-badge">Local Guide · 9 reviews</div>
+          </div>
+        </div>
+        <div class="rev-stars">★★★★★</div>
+      </div>
+      <p>"I returned from a trip to find my water pressure next to nonexistent. Northstar came through — professional, knowledgeable, and genuinely helpful when I needed it most."</p>
+      <div class="rev-ago">10 months ago</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-header">
+        <div class="rev-person">
+          <div class="rev-av av-2">CD</div>
+          <div>
+            <div class="rev-name">Carissa DeHoyos</div>
+            <div class="rev-badge">Local Guide · 13 reviews</div>
+          </div>
+        </div>
+        <div class="rev-stars">★★★★★</div>
+      </div>
+      <p>"Right before Thanksgiving — no hot water, water heater completely gone. Northstar kept in contact from start to finish and spent almost all day ensuring everything was perfect. Incredible."</p>
+      <div class="rev-ago">4 months ago</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-header">
+        <div class="rev-person">
+          <div class="rev-av av-3">SM</div>
+          <div>
+            <div class="rev-name">Sabrina Macmanus</div>
+            <div class="rev-badge">5 reviews</div>
+          </div>
+        </div>
+        <div class="rev-stars">★★★★★</div>
+      </div>
+      <p>"The technician was incredibly kind and patient — they took the time to explain what was happening and why. Professional, effective, and genuinely caring. I highly recommend them."</p>
+      <div class="rev-ago">8 months ago</div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATORS -->
+<section class="diff-section">
+  <div class="section-header">
+    <div class="eyebrow">Why Northstar</div>
+    <div class="section-h">The Standard That<br><em>Sets Us Apart</em></div>
+  </div>
+  <div class="diff-grid">
+    <div class="diff-card">
+      <div class="diff-num">01</div>
+      <span class="diff-icon">🗣️</span>
+      <h4>We Explain Everything</h4>
+      <p>You'll never be left in the dark. Our technicians walk you through what's wrong, why, and how we're fixing it.</p>
+      <div class="diff-line"></div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-num">02</div>
+      <span class="diff-icon">📱</span>
+      <h4>Constant Communication</h4>
+      <p>From first call to final fix, we keep you updated. No ghosting. No vague timelines. Real contact throughout.</p>
+      <div class="diff-line"></div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-num">03</div>
+      <span class="diff-icon">⚡</span>
+      <h4>Fast, Thorough Service</h4>
+      <p>We move quickly without cutting corners. When it's urgent, we treat it as urgent — without sacrificing quality.</p>
+      <div class="diff-line"></div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-num">04</div>
+      <span class="diff-icon">🏅</span>
+      <h4>Master Licensed Plumbers</h4>
+      <p>Not just certified — master level. The highest professional standard in Texas, on every job we take.</p>
+      <div class="diff-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="process">
+  <div class="section-header" style="text-align:center;">
+    <div class="eyebrow" style="justify-content:center;">How It Works</div>
+    <div class="section-h" style="text-align:center;">From First Call to<br><em>Fixed & Done</em></div>
+  </div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-circle">📞</div>
+      <h4>Call Us</h4>
+      <p>Reach us at 210-304-0212. We listen, assess, and schedule promptly — no runaround.</p>
+    </div>
+    <div class="step">
+      <div class="step-circle">🔎</div>
+      <h4>We Diagnose</h4>
+      <p>Our master plumber arrives and diagnoses the problem clearly, explaining everything before we touch a thing.</p>
+    </div>
+    <div class="step">
+      <div class="step-circle">✅</div>
+      <h4>You Approve</h4>
+      <p>Clear, upfront pricing. No surprises. You decide. We never start work without your full agreement.</p>
+    </div>
+    <div class="step">
+      <div class="step-circle">🌟</div>
+      <h4>Done Right</h4>
+      <p>We complete the job to the highest standard — and follow up to make sure you're completely satisfied.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-star-bg" aria-hidden="true"></div>
+  <h2>Ready to Work With<br><em>The Best in San Antonio?</em></h2>
+  <p>Don't let a plumbing problem ruin your day. Call Northstar and experience what a perfect 5.0 rating actually feels like.</p>
+  <div class="cta-btns">
+    <a href="tel:+12103040212" class="btn-star" style="font-size:1rem;padding:1.1rem 3rem;">✦ Call Now: 210-304-0212</a>
+    <a href="https://northstar33.com" class="btn-ghost-light" style="font-size:0.85rem;">Visit northstar33.com →</a>
+  </div>
+  <a href="tel:+12103040212" class="cta-phone">
+    <span>Available Now — Call Direct</span>
+    (210) 304-0212
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-logo-wrap">
+      <div class="nav-logo" style="margin-bottom:0.5rem;">
+        <div class="logo-star">
+          <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px">
+            <path d="M17 2L19.5 14.5L32 17L19.5 19.5L17 32L14.5 19.5L2 17L14.5 14.5L17 2Z" fill="#E8D97A" opacity="0.9"/>
+          </svg>
+        </div>
+        <div class="logo-text" style="color:var(--white);">Northstar<span> Plumbing</span></div>
+      </div>
+      <p class="footer-desc">San Antonio's highest-rated plumbing service — master licensed, fully transparent, and dedicated to your peace of mind.</p>
+      <div class="footer-contact">
+        <a href="tel:+12103040212">📞 (210) 304-0212</a>
+        <a href="https://northstar33.com">🌐 northstar33.com</a>
+        <a href="#">📍 San Antonio, TX</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#">Leak Detection & Repair</a></li>
+        <li><a href="#">Water Heater Service</a></li>
+        <li><a href="#">Water Softeners</a></li>
+        <li><a href="#">Pressure Restoration</a></li>
+        <li><a href="#">Full Plumbing Repair</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Our Process</a></li>
+        <li><a href="https://northstar33.com">northstar33.com</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:+12103040212">(210) 304-0212</a></li>
+        <li><a href="#">San Antonio, TX</a></li>
+        <li><a href="#">Opens 9 AM Daily</a></li>
+        <li><a href="#">Request a Quote</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Northstar Plumbing LLC. All rights reserved.</p>
+    <div class="footer-rating">
+      <span class="stars">★★★★★</span>
+      <span>5.0 · 118 Google Reviews</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Generate star field
+const field = document.getElementById('star-field');
+for (let i = 0; i < 160; i++) {
+  const s = document.createElement('div');
+  s.className = 'star-dot';
+  const size = Math.random() * 2.5 + 0.5;
+  s.style.cssText = `
+    left:${Math.random()*100}%;
+    top:${Math.random()*100}%;
+    width:${size}px; height:${size}px;
+    --dur:${2+Math.random()*4}s;
+    --delay:${Math.random()*4}s;
+    --dim:${0.1+Math.random()*0.3};
+    --bright:${0.5+Math.random()*0.5};
+  `;
+  field.appendChild(s);
+}
+
+// Nav scroll behavior
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80) {
+    nav.classList.add('scrolled');
+    nav.classList.remove('dark-nav');
+  } else {
+    nav.classList.remove('scrolled');
+    nav.classList.add('dark-nav');
+  }
+});
+</script>
+</body>
+</html>
