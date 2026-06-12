@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fantasy Kingdom — Unleash the Magic</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0A0A0F;
+  --ink2: #14141F;
+  --paper: #F5F0E8;
+  --vivid: #FF2D55;
+  --vivid2: #FF6B00;
+  --cyan: #00D4FF;
+  --lime: #A8FF3E;
+  --purple: #7B2FFF;
+  --yellow: #FFD700;
+  --white: #FFFFFF;
+  --muted: rgba(245,240,232,0.45);
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+body {
+  font-family:'Barlow',sans-serif;
+  background: var(--ink);
+  color: var(--white);
+  overflow-x:hidden;
+}
+
+/* ── TICKER TAPE ── */
+.ticker {
+  background: var(--vivid);
+  padding: 9px 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 200;
+}
+.ticker-inner {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: ticker 20s linear infinite;
+}
+.ticker-item {
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;
+  font-size:0.78rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color: var(--white);
+  padding: 0 2.5rem;
+  display:flex;
+  align-items:center;
+  gap:0.8rem;
+}
+.ticker-dot { width:5px;height:5px;background:rgba(255,255,255,0.5);border-radius:50%;flex-shrink:0; }
+@keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ── NAV ── */
+nav {
+  position:fixed;
+  top:37px;left:0;right:0;
+  z-index:999;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 3rem;
+  height:70px;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+nav.scrolled {
+  background: rgba(10,10,15,0.96);
+  box-shadow: 0 1px 0 rgba(255,45,85,0.3);
+  backdrop-filter: blur(12px);
+}
+.logo {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+}
+.logo img { height:42px; }
+.logo-text {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.5rem;
+  letter-spacing:0.08em;
+  color:var(--white);
+  line-height:1;
+}
+.logo-text span { color:var(--vivid); }
+
+.nav-center {
+  display:flex;
+  gap:2.2rem;
+  list-style:none;
+}
+.nav-center a {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.82rem;
+  font-weight:600;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.65);
+  text-decoration:none;
+  transition:color 0.25s;
+}
+.nav-center a:hover { color:var(--cyan); }
+
+.nav-actions { display:flex; gap:12px; align-items:center; }
+.nav-pill {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.78rem;
+  font-weight:700;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  padding:9px 22px;
+  border-radius:100px;
+  cursor:pointer;
+  text-decoration:none;
+  transition:all 0.3s;
+  border:none;
+}
+.nav-pill.ghost {
+  background:transparent;
+  border:1.5px solid rgba(255,255,255,0.25);
+  color:var(--white);
+}
+.nav-pill.ghost:hover { border-color:var(--cyan); color:var(--cyan); }
+.nav-pill.solid {
+  background:var(--vivid);
+  color:var(--white);
+  box-shadow: 0 0 20px rgba(255,45,85,0.4);
+}
+.nav-pill.solid:hover { background:#e0173f; transform:translateY(-2px); box-shadow:0 6px 25px rgba(255,45,85,0.55); }
+
+.hamburger { display:none; cursor:pointer; flex-direction:column; gap:5px; }
+.hamburger span { width:24px;height:2px;background:var(--white);transition:all 0.3s;display:block; }
+
+/* ── HERO ── */
+#hero {
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  padding-top:107px;
+}
+
+.hero-bg {
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse 70% 80% at 70% 50%, rgba(123,47,255,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 10% 60%, rgba(255,45,85,0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 50% 10%, rgba(0,212,255,0.1) 0%, transparent 60%),
+    var(--ink);
+}
+
+/* Animated grid */
+.hero-grid {
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size:60px 60px;
+  animation:grid-move 20s linear infinite;
+  opacity:0.6;
+}
+@keyframes grid-move { from{background-position:0 0} to{background-position:60px 60px} }
+
+/* Floating orbs */
+.orb {
+  position:absolute;
+  border-radius:50%;
+  filter:blur(80px);
+  animation:orb-float ease-in-out infinite;
+  pointer-events:none;
+}
+.orb-1 { width:500px;height:500px;background:rgba(123,47,255,0.2);top:-100px;right:-100px;animation-duration:8s; }
+.orb-2 { width:350px;height:350px;background:rgba(255,45,85,0.15);bottom:0;left:-80px;animation-duration:11s;animation-delay:-3s; }
+.orb-3 { width:280px;height:280px;background:rgba(0,212,255,0.12);top:30%;right:30%;animation-duration:9s;animation-delay:-5s; }
+@keyframes orb-float {
+  0%,100%{transform:translateY(0) scale(1);}
+  50%{transform:translateY(-30px) scale(1.05);}
+}
+
+.hero-inner {
+  position:relative;
+  z-index:2;
+  max-width:1300px;
+  margin:0 auto;
+  padding:0 3rem;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  align-items:center;
+  width:100%;
+}
+
+.hero-left {}
+.hero-tag {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.75rem;
+  font-weight:700;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--cyan);
+  border:1.5px solid rgba(0,212,255,0.3);
+  padding:6px 16px;
+  border-radius:100px;
+  margin-bottom:1.8rem;
+  opacity:0;
+  animation:slide-in-left 0.8s 0.3s forwards;
+}
+.hero-tag::before { content:'★'; font-size:0.65rem; }
+
+.hero-h1 {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(4rem,10vw,8.5rem);
+  line-height:0.92;
+  letter-spacing:0.02em;
+  color:var(--white);
+  opacity:0;
+  animation:slide-in-left 0.9s 0.5s forwards;
+}
+.hero-h1 .line-accent { color:var(--vivid); display:block; }
+.hero-h1 .line-stroke {
+  -webkit-text-stroke:2px var(--yellow);
+  color:transparent;
+  display:block;
+}
+
+.hero-sub {
+  font-size:1.05rem;
+  font-weight:300;
+  color:rgba(255,255,255,0.6);
+  line-height:1.8;
+  max-width:480px;
+  margin:2rem 0 2.8rem;
+  opacity:0;
+  animation:slide-in-left 0.9s 0.7s forwards;
+}
+
+.hero-cta-row {
+  display:flex;
+  gap:16px;
+  align-items:center;
+  flex-wrap:wrap;
+  opacity:0;
+  animation:slide-in-left 0.9s 0.9s forwards;
+}
+
+.cta-big {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.9rem;
+  font-weight:900;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  padding:16px 38px;
+  background:linear-gradient(135deg, var(--vivid), var(--vivid2));
+  color:var(--white);
+  border:none;
+  border-radius:4px;
+  cursor:pointer;
+  text-decoration:none;
+  position:relative;
+  overflow:hidden;
+  transition:all 0.3s;
+}
+.cta-big::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,0);
+  transition:background 0.3s;
+}
+.cta-big:hover { transform:translateY(-3px); box-shadow:0 12px 35px rgba(255,45,85,0.45); }
+.cta-big:hover::after { background:rgba(255,255,255,0.1); }
+
+.cta-link {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.82rem;
+  font-weight:600;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.65);
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  transition:color 0.3s;
+}
+.cta-link:hover { color:var(--cyan); }
+.cta-link::after { content:'→'; transition:transform 0.3s; }
+.cta-link:hover::after { transform:translateX(4px); }
+
+/* Hero right: Park cards cluster */
+.hero-right {
+  position:relative;
+  opacity:0;
+  animation:slide-in-right 1s 0.6s forwards;
+}
+
+.park-cluster {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.pcluster-card {
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+  transition:transform 0.4s, box-shadow 0.4s;
+  border:1px solid rgba(255,255,255,0.08);
+}
+.pcluster-card:hover { transform:scale(1.03) rotate(-0.5deg); box-shadow:0 20px 50px rgba(0,0,0,0.5); }
+.pcluster-card.tall { grid-row:span 2; }
+.pc-bg {
+  width:100%;
+  padding-top:100%;
+  position:relative;
+}
+.pcluster-card.tall .pc-bg { padding-top:100%; }
+.pc-inner {
+  position:absolute;
+  inset:0;
+  padding:1.2rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+.pc-emoji { font-size:2.2rem; margin-bottom:auto; display:block; }
+.pc-name {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1.1rem;
+  font-weight:900;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--white);
+  text-shadow:0 2px 8px rgba(0,0,0,0.5);
+}
+.pc-sub {
+  font-size:0.72rem;
+  color:rgba(255,255,255,0.6);
+  margin-top:2px;
+  font-weight:300;
+}
+
+.pc-1 { background:linear-gradient(145deg,#3a0d5c 0%,#7B2FFF 50%,#C0203A 100%); }
+.pc-2 { background:linear-gradient(145deg,#003060 0%,#1B8DD8 100%); }
+.pc-3 { background:linear-gradient(145deg,#600000 0%,#FF2D55 100%); }
+.pc-4 { background:linear-gradient(145deg,#0a3020 0%,#00B89C 100%); }
+.pc-5 { background:linear-gradient(145deg,#3a2000 0%,#FF6B00 100%); }
+
+/* Floating badge */
+.hero-badge {
+  position:absolute;
+  top:-20px;
+  right:-10px;
+  background:var(--yellow);
+  color:var(--ink);
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.5rem;
+  line-height:1;
+  animation:spin-badge 8s linear infinite;
+  box-shadow:0 0 30px rgba(255,215,0,0.4);
+  z-index:5;
+}
+.hero-badge small { font-family:'Barlow Condensed',sans-serif; font-size:0.55rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; }
+@keyframes spin-badge { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+
+@keyframes slide-in-left {
+  from{opacity:0;transform:translateX(-30px)}
+  to{opacity:1;transform:translateX(0)}
+}
+@keyframes slide-in-right {
+  from{opacity:0;transform:translateX(30px)}
+  to{opacity:1;transform:translateX(0)}
+}
+
+/* ── STATS BAR ── */
+.stats-bar {
+  background:var(--ink2);
+  border-top:1px solid rgba(255,255,255,0.06);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  padding:0;
+  display:flex;
+  overflow:hidden;
+}
+.stat-block {
+  flex:1;
+  padding:2.2rem 2rem;
+  text-align:center;
+  position:relative;
+  border-right:1px solid rgba(255,255,255,0.06);
+  transition:background 0.3s;
+}
+.stat-block:last-child { border-right:none; }
+.stat-block:hover { background:rgba(255,255,255,0.03); }
+.stat-num {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:3.5rem;
+  line-height:1;
+  color:var(--vivid);
+  display:block;
+}
+.stat-lbl {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.72rem;
+  font-weight:600;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.4);
+  margin-top:4px;
+  display:block;
+}
+.stat-block:nth-child(2) .stat-num { color:var(--cyan); }
+.stat-block:nth-child(3) .stat-num { color:var(--lime); }
+.stat-block:nth-child(4) .stat-num { color:var(--yellow); }
+
+/* ── ABOUT SECTION ── */
+#about {
+  padding:8rem 3rem;
+  max-width:1300px;
+  margin:0 auto;
+}
+.about-layout {
+  display:grid;
+  grid-template-columns:5fr 4fr;
+  gap:5rem;
+  align-items:center;
+}
+.about-text-col {}
+.section-kicker {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.72rem;
+  font-weight:700;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  color:var(--vivid);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:1.4rem;
+}
+.section-kicker::before { content:''; width:30px; height:2px; background:var(--vivid); display:block; }
+
+.about-h2 {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3rem,6vw,5rem);
+  line-height:0.95;
+  letter-spacing:0.03em;
+  color:var(--white);
+  margin-bottom:1.8rem;
+}
+.about-h2 span { color:var(--purple); }
+
+.about-p {
+  font-size:1rem;
+  font-weight:300;
+  color:rgba(255,255,255,0.6);
+  line-height:1.9;
+  margin-bottom:1rem;
+}
+
+.about-facts {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1rem;
+  margin-top:2.5rem;
+}
+.fact-box {
+  padding:1.2rem;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;
+  transition:border-color 0.3s, background 0.3s;
+  background:rgba(255,255,255,0.02);
+}
+.fact-box:hover { border-color:rgba(0,212,255,0.35); background:rgba(0,212,255,0.04); }
+.fact-icon { font-size:1.4rem; margin-bottom:0.5rem; display:block; }
+.fact-label {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.7rem;
+  font-weight:700;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.35);
+}
+.fact-val {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1.05rem;
+  font-weight:600;
+  color:var(--white);
+  margin-top:2px;
+}
+
+/* About right: big text visual */
+.about-visual-col {
+  position:relative;
+}
+.big-number {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:14rem;
+  line-height:1;
+  color:rgba(255,255,255,0.04);
+  position:absolute;
+  top:-2rem;
+  right:-2rem;
+  pointer-events:none;
+  user-select:none;
+}
+.about-feature-list { list-style:none; }
+.about-feature-list li {
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  padding:1.2rem 0;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  transition:transform 0.3s;
+}
+.about-feature-list li:hover { transform:translateX(6px); }
+.about-feature-list li:first-child { border-top:1px solid rgba(255,255,255,0.06); }
+.afl-icon {
+  width:42px;height:42px;
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;
+  flex-shrink:0;
+}
+.afl-body {}
+.afl-title {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1.05rem;
+  font-weight:700;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--white);
+}
+.afl-desc {
+  font-size:0.83rem;
+  color:rgba(255,255,255,0.45);
+  margin-top:2px;
+  line-height:1.5;
+}
+
+/* ── RIDES SECTION ── */
+#rides {
+  background:var(--ink2);
+  padding:7rem 0;
+  overflow:hidden;
+}
+.rides-header {
+  max-width:1300px;
+  margin:0 auto 4rem;
+  padding:0 3rem;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+}
+.rides-h2 {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.5rem,5vw,4rem);
+  line-height:0.95;
+  color:var(--white);
+}
+.rides-h2 span { color:var(--lime); }
+.rides-count {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:4rem;
+  color:rgba(255,255,255,0.08);
+  line-height:1;
+}
+
+/* Two-row marquee */
+.rides-rows { display:flex; flex-direction:column; gap:14px; }
+.rides-row {
+  display:flex;
+  gap:14px;
+  width:max-content;
+  padding:2px 0;
+}
+.rides-row.row1 { animation:marquee-r 30s linear infinite; }
+.rides-row.row2 { animation:marquee-l 25s linear infinite; }
+@keyframes marquee-r { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@keyframes marquee-l { from{transform:translateX(-50%)} to{transform:translateX(0)} }
+.rides-row:hover { animation-play-state:paused; }
+
+.ride-pill {
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 20px;
+  border-radius:100px;
+  border:1px solid rgba(255,255,255,0.1);
+  white-space:nowrap;
+  flex-shrink:0;
+  cursor:default;
+  transition:all 0.3s;
+  background:rgba(255,255,255,0.03);
+}
+.ride-pill:hover {
+  background:rgba(255,45,85,0.15);
+  border-color:rgba(255,45,85,0.5);
+  transform:scale(1.05);
+}
+.rp-icon { font-size:1.1rem; }
+.rp-name {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.82rem;
+  font-weight:600;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.75);
+}
+
+/* ── EXPERIENCE ── */
+#experience {
+  padding:8rem 3rem;
+  max-width:1300px;
+  margin:0 auto;
+}
+.exp-header {
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  margin-bottom:4rem;
+  flex-wrap:wrap;
+  gap:2rem;
+}
+.exp-h2 {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.5rem,5vw,4.2rem);
+  line-height:0.95;
+  color:var(--white);
+}
+.exp-h2 span { color:var(--vivid2); }
+
+.exp-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1.2rem;
+}
+.exp-tile {
+  padding:2rem 1.5rem;
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;
+  background:rgba(255,255,255,0.02);
+  cursor:pointer;
+  transition:all 0.4s;
+  position:relative;
+  overflow:hidden;
+}
+.exp-tile::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(255,45,85,0.12) 0%, transparent 60%);
+  opacity:0;
+  transition:opacity 0.4s;
+}
+.exp-tile:hover {
+  border-color:rgba(255,45,85,0.4);
+  transform:translateY(-6px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+.exp-tile:hover::before { opacity:1; }
+.exp-tile:nth-child(2)::before { background:linear-gradient(135deg, rgba(123,47,255,0.15) 0%, transparent 60%); }
+.exp-tile:nth-child(2):hover { border-color:rgba(123,47,255,0.4); }
+.exp-tile:nth-child(3)::before { background:linear-gradient(135deg, rgba(0,212,255,0.12) 0%, transparent 60%); }
+.exp-tile:nth-child(3):hover { border-color:rgba(0,212,255,0.4); }
+.exp-tile:nth-child(4)::before { background:linear-gradient(135deg, rgba(168,255,62,0.1) 0%, transparent 60%); }
+.exp-tile:nth-child(4):hover { border-color:rgba(168,255,62,0.35); }
+
+.et-icon { font-size:2.5rem; margin-bottom:1.2rem; display:block; position:relative; z-index:1; }
+.et-num {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:3.5rem;
+  line-height:1;
+  color:rgba(255,255,255,0.06);
+  position:absolute;
+  top:1rem; right:1rem;
+}
+.et-title {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1.1rem;
+  font-weight:900;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--white);
+  margin-bottom:0.6rem;
+  position:relative; z-index:1;
+}
+.et-desc {
+  font-size:0.83rem;
+  font-weight:300;
+  color:rgba(255,255,255,0.5);
+  line-height:1.7;
+  position:relative; z-index:1;
+}
+
+/* ── TICKETS ── */
+#tickets {
+  padding:8rem 3rem;
+  background:var(--ink2);
+}
+.tickets-wrap {
+  max-width:1300px;
+  margin:0 auto;
+}
+.tickets-top {
+  text-align:center;
+  margin-bottom:4rem;
+}
+.tickets-h2 {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.5rem,5vw,4.2rem);
+  line-height:0.95;
+  color:var(--white);
+}
+.tickets-h2 span { color:var(--yellow); }
+.tickets-sub {
+  font-size:0.95rem;
+  color:rgba(255,255,255,0.45);
+  margin-top:0.8rem;
+  font-weight:300;
+}
+
+.ticket-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+}
+.tcard {
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;
+  overflow:hidden;
+  transition:all 0.4s;
+  background:rgba(255,255,255,0.02);
+  position:relative;
+}
+.tcard:hover { transform:translateY(-6px); box-shadow:0 25px 60px rgba(0,0,0,0.5); }
+.tcard.hot {
+  border-color:rgba(255,45,85,0.5);
+  background:rgba(255,45,85,0.06);
+}
+.tcard-top {
+  padding:1.8rem 1.8rem 1.2rem;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  position:relative;
+}
+.tcard-badge {
+  display:inline-block;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.68rem;
+  font-weight:700;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  padding:4px 12px;
+  border-radius:100px;
+  margin-bottom:1rem;
+}
+.tcard-badge.b-basic { background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.6); }
+.tcard-badge.b-hot { background:var(--vivid); color:var(--white); }
+.tcard-badge.b-premium { background:rgba(255,215,0,0.15); color:var(--yellow); }
+.tcard-name {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.8rem;
+  letter-spacing:0.04em;
+  color:var(--white);
+}
+.tcard-price {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:3.5rem;
+  line-height:1;
+  color:var(--white);
+  margin:0.8rem 0 0;
+}
+.tcard.hot .tcard-price { color:var(--vivid); }
+.tcard-price sup {
+  font-size:1.2rem;
+  vertical-align:top;
+  margin-top:0.6rem;
+  display:inline-block;
+}
+.tcard-price small {
+  font-family:'Barlow',sans-serif;
+  font-size:0.8rem;
+  color:rgba(255,255,255,0.35);
+  font-weight:300;
+}
+.tcard-body { padding:1.5rem 1.8rem 2rem; }
+.tcard-feature {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:7px 0;
+  font-size:0.88rem;
+  color:rgba(255,255,255,0.65);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.tcard-feature::before {
+  content:'';
+  width:18px;height:18px;
+  border-radius:50%;
+  border:1.5px solid rgba(168,255,62,0.5);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  background:rgba(168,255,62,0.08);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 5L4 7.5L8.5 2.5' stroke='%23A8FF3E' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:center;
+}
+.tcard-btn {
+  width:100%;
+  margin-top:1.5rem;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.82rem;
+  font-weight:900;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  padding:14px;
+  border-radius:6px;
+  cursor:pointer;
+  border:none;
+  transition:all 0.3s;
+}
+.tcard-btn.b-outline {
+  background:transparent;
+  border:1.5px solid rgba(255,255,255,0.2);
+  color:var(--white);
+}
+.tcard-btn.b-outline:hover { border-color:var(--white); background:rgba(255,255,255,0.06); }
+.tcard-btn.b-vivid {
+  background:var(--vivid);
+  color:var(--white);
+  box-shadow:0 0 20px rgba(255,45,85,0.35);
+}
+.tcard-btn.b-vivid:hover { background:#e0173f; transform:translateY(-2px); box-shadow:0 8px 30px rgba(255,45,85,0.5); }
+.tcard-btn.b-gold {
+  background:var(--yellow);
+  color:var(--ink);
+  font-weight:900;
+}
+.tcard-btn.b-gold:hover { background:#ffe033; transform:translateY(-2px); box-shadow:0 8px 25px rgba(255,215,0,0.35); }
+
+/* ── INFO ── */
+#info {
+  padding:5rem 3rem;
+  max-width:1300px;
+  margin:0 auto;
+}
+.info-cards {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+}
+.info-card {
+  padding:2rem;
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;
+  display:flex;
+  gap:1.2rem;
+  align-items:flex-start;
+  transition:all 0.3s;
+  background:rgba(255,255,255,0.02);
+}
+.info-card:hover { border-color:rgba(0,212,255,0.3); background:rgba(0,212,255,0.04); }
+.info-card-icon {
+  width:48px;height:48px;
+  border-radius:10px;
+  background:rgba(0,212,255,0.1);
+  border:1px solid rgba(0,212,255,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;
+  flex-shrink:0;
+}
+.info-card-body {}
+.info-card-label {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.68rem;
+  font-weight:700;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--cyan);
+  margin-bottom:0.5rem;
+}
+.info-card-val {
+  font-size:0.9rem;
+  color:rgba(255,255,255,0.7);
+  line-height:1.7;
+}
+
+/* ── CTA FULL ── */
+#cta {
+  margin:0 3rem 4rem;
+  border-radius:16px;
+  overflow:hidden;
+  position:relative;
+  background:linear-gradient(135deg, #1a0030 0%, #300040 30%, #1a0030 60%, #200010 100%);
+  border:1px solid rgba(123,47,255,0.3);
+}
+.cta-inner {
+  padding:6rem 5rem;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  align-items:center;
+  position:relative;
+  z-index:1;
+}
+.cta-bg-text {
+  position:absolute;
+  right:-2rem;
+  top:50%;
+  transform:translateY(-50%);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:18rem;
+  color:rgba(123,47,255,0.08);
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+  white-space:nowrap;
+}
+.cta-h2 {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3rem,6vw,5rem);
+  line-height:0.95;
+  color:var(--white);
+}
+.cta-h2 span { color:var(--purple); }
+.cta-p {
+  font-size:0.95rem;
+  font-weight:300;
+  color:rgba(255,255,255,0.55);
+  line-height:1.8;
+  margin-top:1rem;
+}
+.cta-right { display:flex; flex-direction:column; gap:1rem; }
+.cta-box {
+  padding:1.4rem 1.8rem;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.04);
+  display:flex;
+  align-items:center;
+  gap:14px;
+  text-decoration:none;
+  transition:all 0.3s;
+}
+.cta-box:hover { border-color:rgba(255,45,85,0.4); background:rgba(255,45,85,0.08); transform:translateX(6px); }
+.cta-box-icon { font-size:1.8rem; }
+.cta-box-text {}
+.cta-box-title {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.95rem;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--white);
+}
+.cta-box-sub {
+  font-size:0.8rem;
+  color:rgba(255,255,255,0.4);
+  margin-top:2px;
+}
+
+/* ── TESTIMONIALS ── */
+#testimonials {
+  padding:7rem 3rem;
+  background:var(--ink2);
+}
+.test-wrap { max-width:1300px; margin:0 auto; }
+.test-h2 {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.5rem,5vw,4rem);
+  color:var(--white);
+  text-align:center;
+  margin-bottom:3.5rem;
+}
+.test-h2 span { color:var(--cyan); }
+.test-cards {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+}
+.tcard2 {
+  padding:2rem;
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;
+  background:rgba(255,255,255,0.02);
+  transition:all 0.35s;
+}
+.tcard2:hover { border-color:rgba(0,212,255,0.3); transform:translateY(-4px); }
+.tc2-stars { color:var(--yellow); font-size:0.85rem; letter-spacing:3px; margin-bottom:1rem; }
+.tc2-text {
+  font-size:0.93rem;
+  font-weight:300;
+  color:rgba(255,255,255,0.7);
+  line-height:1.8;
+  font-style:italic;
+  margin-bottom:1.5rem;
+}
+.tc2-author {
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.tc2-avatar {
+  width:38px;height:38px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1rem;
+  color:var(--white);
+  flex-shrink:0;
+}
+.tc2-name {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.85rem;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--white);
+}
+.tc2-loc { font-size:0.75rem; color:rgba(255,255,255,0.35); }
+
+/* ── FOOTER ── */
+footer {
+  background:#050508;
+  border-top:1px solid rgba(255,255,255,0.06);
+  padding:5rem 3rem 3rem;
+}
+.footer-inner {
+  max-width:1300px;
+  margin:0 auto;
+}
+.footer-top {
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1.5fr;
+  gap:3rem;
+  margin-bottom:3.5rem;
+}
+.fb-tagline {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2.5rem;
+  color:rgba(255,255,255,0.08);
+  line-height:1;
+  margin:1.2rem 0;
+  letter-spacing:0.05em;
+}
+.fb-p {
+  font-size:0.85rem;
+  color:rgba(255,255,255,0.35);
+  line-height:1.8;
+  max-width:270px;
+  margin-bottom:1.5rem;
+}
+.socials { display:flex; gap:8px; }
+.soc {
+  width:36px;height:36px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.4);
+  font-size:0.8rem;
+  cursor:pointer;
+  text-decoration:none;
+  transition:all 0.3s;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;
+}
+.soc:hover { border-color:var(--vivid); color:var(--vivid); background:rgba(255,45,85,0.08); }
+
+.fc-h {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.7rem;
+  font-weight:700;
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.3);
+  margin-bottom:1.4rem;
+}
+.fc-links { list-style:none; }
+.fc-links li { margin-bottom:0.6rem; }
+.fc-links a {
+  font-size:0.87rem;
+  color:rgba(255,255,255,0.5);
+  text-decoration:none;
+  transition:color 0.3s;
+}
+.fc-links a:hover { color:var(--cyan); }
+
+.fc-contact-row {
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  margin-bottom:0.9rem;
+}
+.fc-contact-row .ci { font-size:0.95rem; flex-shrink:0; margin-top:1px; }
+.fc-contact-row span { font-size:0.83rem; color:rgba(255,255,255,0.45); line-height:1.6; }
+
+.footer-bottom {
+  border-top:1px solid rgba(255,255,255,0.05);
+  padding-top:2rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+.footer-bottom p { font-size:0.78rem; color:rgba(255,255,255,0.25); }
+.footer-bottom a {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.7rem;
+  font-weight:700;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--vivid);
+  text-decoration:none;
+  opacity:0.7;
+}
+.footer-bottom a:hover { opacity:1; }
+
+/* ── MOBILE ── */
+.mobile-overlay {
+  position:fixed;inset:0;
+  background:rgba(10,10,15,0.98);
+  z-index:1000;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:2rem;
+  transform:translateY(-100%);
+  transition:transform 0.4s ease;
+}
+.mobile-overlay.open { transform:translateY(0); }
+.mob-close { position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--white);font-size:2rem;cursor:pointer; }
+.mobile-overlay a {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2.2rem;
+  letter-spacing:0.1em;
+  color:var(--white);
+  text-decoration:none;
+}
+.mobile-overlay a:hover { color:var(--vivid); }
+
+/* ── SCROLL REVEAL ── */
+.sr { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
+.sr.in { opacity:1; transform:translateY(0); }
+
+@media(max-width:960px){
+  nav { padding:0 1.5rem; }
+  .nav-center,.nav-actions { display:none; }
+  .hamburger { display:flex; }
+  .hero-inner { grid-template-columns:1fr; padding:0 1.5rem; }
+  .hero-right { display:none; }
+  .stats-bar { flex-wrap:wrap; }
+  .stat-block { flex:1 1 50%; border-bottom:1px solid rgba(255,255,255,0.06); }
+  #about { padding:5rem 1.5rem; }
+  .about-layout { grid-template-columns:1fr; gap:3rem; }
+  .exp-grid { grid-template-columns:1fr 1fr; }
+  .ticket-grid { grid-template-columns:1fr; }
+  .test-cards { grid-template-columns:1fr; }
+  .footer-top { grid-template-columns:1fr; gap:2rem; }
+  .cta-inner { grid-template-columns:1fr; padding:3.5rem 2rem; }
+  .cta-bg-text { display:none; }
+  .info-cards { grid-template-columns:1fr; }
+  #cta { margin:0 1.5rem 4rem; }
+  #experience { padding:5rem 1.5rem; }
+  #tickets { padding:5rem 1.5rem; }
+  #testimonials { padding:5rem 1.5rem; }
+  footer { padding:4rem 1.5rem 2.5rem; }
+  .rides-header { padding:0 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Mobile Overlay -->
+<div class="mobile-overlay" id="mobileOverlay">
+  <button class="mob-close" onclick="document.getElementById('mobileOverlay').classList.remove('open')">✕</button>
+  <a href="#about">About</a>
+  <a href="#rides">Rides</a>
+  <a href="#experience">Experience</a>
+  <a href="#tickets">Tickets</a>
+  <a href="#testimonials">Reviews</a>
+  <a href="https://fantasykingdom.net/ticket/" target="_blank" class="nav-pill solid" style="font-size:0.9rem;padding:14px 32px;border-radius:4px;">Get Tickets</a>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner" id="tickerInner"></div>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="logo">
+    <img src="https://fantasykingdom.net/wp-content/uploads/2021/07/fantasy-logo-white.webp" alt="Fantasy Kingdom" onerror="this.style.display='none'">
+    <div class="logo-text">Fantasy<br><span>Kingdom</span></div>
+  </a>
+  <ul class="nav-center">
+    <li><a href="#about">About</a></li>
+    <li><a href="#rides">Rides</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#tickets">Tickets</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="tel:01969-910100" class="nav-pill ghost">📞 Call</a>
+    <a href="https://fantasykingdom.net/ticket/" target="_blank" class="nav-pill solid">Buy Tickets</a>
+  </div>
+  <div class="hamburger" onclick="document.getElementById('mobileOverlay').classList.add('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">Bangladesh's #1 Amusement Complex</div>
+      <h1 class="hero-h1">
+        Unleash<br>
+        <span class="line-accent">The Magic</span>
+        <span class="line-stroke">Kingdom</span>
+      </h1>
+      <p class="hero-sub">Five worlds of wonder across 20 magical acres in Ashulia, Dhaka. Rides that roar, water that thrills, heritage that inspires — since February 2002.</p>
+      <div class="hero-cta-row">
+        <a href="https://fantasykingdom.net/ticket/" target="_blank" class="cta-big">Get Tickets Now</a>
+        <a href="#about" class="cta-link">Discover more</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-badge">
+        <small>Est.</small>
+        2002
+      </div>
+      <div class="park-cluster">
+        <div class="pcluster-card tall pc-1">
+          <div class="pc-bg">
+            <div class="pc-inner">
+              <span class="pc-emoji">🎡</span>
+              <div>
+                <div class="pc-name">Fantasy Kingdom</div>
+                <div class="pc-sub">24 Thrilling Rides</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pcluster-card pc-2">
+          <div class="pc-bg" style="padding-top:85%">
+            <div class="pc-inner">
+              <span class="pc-emoji">🌊</span>
+              <div><div class="pc-name">Water Kingdom</div><div class="pc-sub">Wave Pools & Slides</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="pcluster-card pc-3">
+          <div class="pc-bg" style="padding-top:85%">
+            <div class="pc-inner">
+              <span class="pc-emoji">🏎️</span>
+              <div><div class="pc-name">Xtreme Racing</div><div class="pc-sub">Go-Kart Tracks</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="pcluster-card pc-4">
+          <div class="pc-bg" style="padding-top:80%">
+            <div class="pc-inner">
+              <span class="pc-emoji">🏛️</span>
+              <div><div class="pc-name">Heritage Park</div><div class="pc-sub">Cultural Journey</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="pcluster-card pc-5">
+          <div class="pc-bg" style="padding-top:80%">
+            <div class="pc-inner">
+              <span class="pc-emoji">🏨</span>
+              <div><div class="pc-name">Resort Atlantis</div><div class="pc-sub">Luxury Escape</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-block"><span class="stat-num" data-target="23">0</span><span class="stat-lbl">Years of Magic</span></div>
+  <div class="stat-block"><span class="stat-num" data-target="24">0</span><span class="stat-lbl">Rides & Attractions</span></div>
+  <div class="stat-block"><span class="stat-num" data-target="20">0</span><span class="stat-lbl">Acres of Wonder</span></div>
+  <div class="stat-block"><span class="stat-num" data-target="5">0</span><span class="stat-lbl">Distinct Parks</span></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-layout">
+    <div class="about-text-col sr">
+      <div class="section-kicker">Our Story</div>
+      <h2 class="about-h2">Bangladesh's First<br><span>Amusement</span><br>Complex</h2>
+      <p class="about-p">Opened on 19 February 2002, Fantasy Kingdom is owned and operated by Concord Entertainment Co. Ltd — a sister concern of the prestigious Concord Group. Sprawling across nearly 20 acres in Ashulia, Savar, it stands as a pioneering landmark of entertainment in Bangladesh.</p>
+      <p class="about-p">From heart-stopping roller coasters and wave-pool splashes to heritage discoveries and five-star resort retreats — every corner of Fantasy Kingdom Complex delivers the extraordinary.</p>
+      <div class="about-facts">
+        <div class="fact-box">
+          <span class="fact-icon">🏛️</span>
+          <div class="fact-label">Founded</div>
+          <div class="fact-val">Feb 19, 2002</div>
+        </div>
+        <div class="fact-box">
+          <span class="fact-icon">🏢</span>
+          <div class="fact-label">Parent Company</div>
+          <div class="fact-val">Concord Group</div>
+        </div>
+        <div class="fact-box">
+          <span class="fact-icon">👥</span>
+          <div class="fact-label">Employees</div>
+          <div class="fact-val">500+ Team</div>
+        </div>
+        <div class="fact-box">
+          <span class="fact-icon">🌍</span>
+          <div class="fact-label">Memberships</div>
+          <div class="fact-val">IAAPA · BAAPA</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual-col sr">
+      <div class="big-number">02</div>
+      <ul class="about-feature-list">
+        <li>
+          <div class="afl-icon" style="background:rgba(255,45,85,0.12);border:1px solid rgba(255,45,85,0.2)">🎢</div>
+          <div class="afl-body">
+            <div class="afl-title">Fantasy Kingdom</div>
+            <div class="afl-desc">24 rides including roller coasters, drop towers, 3D & 9D cinema, bumper cars, and the sky-hopper.</div>
+          </div>
+        </li>
+        <li>
+          <div class="afl-icon" style="background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.2)">🌊</div>
+          <div class="afl-body">
+            <div class="afl-title">Water Kingdom</div>
+            <div class="afl-desc">Wave pools, water slides, and aquatic adventures for all ages.</div>
+          </div>
+        </li>
+        <li>
+          <div class="afl-icon" style="background:rgba(255,107,0,0.12);border:1px solid rgba(255,107,0,0.2)">🏎️</div>
+          <div class="afl-body">
+            <div class="afl-title">Xtreme Racing</div>
+            <div class="afl-desc">State-of-the-art Go-Kart tracks for adrenaline-fueled speed enthusiasts.</div>
+          </div>
+        </li>
+        <li>
+          <div class="afl-icon" style="background:rgba(168,255,62,0.08);border:1px solid rgba(168,255,62,0.2)">🏛️</div>
+          <div class="afl-body">
+            <div class="afl-title">Heritage Park & Resort Atlantis</div>
+            <div class="afl-desc">Cultural immersion and world-class luxury accommodation.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- RIDES -->
+<section id="rides">
+  <div class="rides-header sr">
+    <div>
+      <div class="section-kicker">Attractions</div>
+      <h2 class="rides-h2">Every Ride<br><span>Tells a Story</span></h2>
+    </div>
+    <div class="rides-count">24+</div>
+  </div>
+  <div class="rides-rows">
+    <div class="rides-row row1" id="row1"></div>
+    <div class="rides-row row2" id="row2"></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="exp-header sr">
+    <div>
+      <div class="section-kicker">Things To Do</div>
+      <h2 class="exp-h2">Make<br><span>Memories</span></h2>
+    </div>
+    <p style="font-size:0.9rem;color:rgba(255,255,255,0.4);max-width:300px;font-weight:300;line-height:1.7">Every occasion deserves an unforgettable setting.</p>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-tile sr">
+      <div class="et-num">01</div>
+      <span class="et-icon">🏢</span>
+      <div class="et-title">Corporate Day Out</div>
+      <p class="et-desc">Exclusive group packages for team building, company retreats, and corporate celebrations.</p>
+    </div>
+    <div class="exp-tile sr">
+      <div class="et-num">02</div>
+      <span class="et-icon">🎂</span>
+      <div class="et-title">Birthday Parties</div>
+      <p class="et-desc">Make the big day legendary with custom party packages and dedicated celebration zones.</p>
+    </div>
+    <div class="exp-tile sr">
+      <div class="et-num">03</div>
+      <span class="et-icon">🍖</span>
+      <div class="et-title">BBQ & Picnics</div>
+      <p class="et-desc">Open-air BBQ experiences and picnic packages for schools, families, and institutions.</p>
+    </div>
+    <div class="exp-tile sr">
+      <div class="et-num">04</div>
+      <span class="et-icon">🎒</span>
+      <div class="et-title">Group Outings</div>
+      <p class="et-desc">Tailored group packages with priority access, dedicated guides, and special discounts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TICKETS -->
+<section id="tickets">
+  <div class="tickets-wrap">
+    <div class="tickets-top sr">
+      <div class="section-kicker" style="justify-content:center">Entry Passes</div>
+      <h2 class="tickets-h2">Pick Your<br><span>Adventure</span></h2>
+      <p class="tickets-sub">Flexible tickets for every kind of explorer</p>
+    </div>
+    <div class="ticket-grid">
+      <div class="tcard sr">
+        <div class="tcard-top">
+          <div class="tcard-badge b-basic">Classic</div>
+          <div class="tcard-name">Fantasy Kingdom</div>
+          <div class="tcard-price"><sup>BDT</sup> 500 <small>/ person</small></div>
+        </div>
+        <div class="tcard-body">
+          <div class="tcard-feature">All dry rides included</div>
+          <div class="tcard-feature">3D Cinema access</div>
+          <div class="tcard-feature">Weekday & weekend entry</div>
+          <div class="tcard-feature">Valid for one full day</div>
+          <button class="tcard-btn b-outline" onclick="window.open('https://fantasykingdom.net/ticket/','_blank')">Get Tickets</button>
+        </div>
+      </div>
+      <div class="tcard hot sr">
+        <div class="tcard-top">
+          <div class="tcard-badge b-hot">🔥 Most Popular</div>
+          <div class="tcard-name">Fantasy + Water</div>
+          <div class="tcard-price"><sup>BDT</sup> 900 <small>/ person</small></div>
+        </div>
+        <div class="tcard-body">
+          <div class="tcard-feature">All Fantasy Kingdom rides</div>
+          <div class="tcard-feature">Water Kingdom full access</div>
+          <div class="tcard-feature">Wave pool & slides</div>
+          <div class="tcard-feature">3D Cinema included</div>
+          <div class="tcard-feature">Priority entry lanes</div>
+          <button class="tcard-btn b-vivid" onclick="window.open('https://fantasykingdom.net/ticket/','_blank')">Get Tickets</button>
+        </div>
+      </div>
+      <div class="tcard sr">
+        <div class="tcard-top">
+          <div class="tcard-badge b-premium">⭐ Ultimate</div>
+          <div class="tcard-name">Full Complex</div>
+          <div class="tcard-price"><sup>BDT</sup> 1400 <small>/ person</small></div>
+        </div>
+        <div class="tcard-body">
+          <div class="tcard-feature">All 5 parks access</div>
+          <div class="tcard-feature">Xtreme Racing sessions</div>
+          <div class="tcard-feature">Heritage Park included</div>
+          <div class="tcard-feature">Resort dining discount</div>
+          <div class="tcard-feature">Unlimited re-entry</div>
+          <button class="tcard-btn b-gold" onclick="window.open('https://fantasykingdom.net/ticket/','_blank')">Get Tickets</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section id="info">
+  <div class="info-cards">
+    <div class="info-card sr">
+      <div class="info-card-icon">🕐</div>
+      <div class="info-card-body">
+        <div class="info-card-label">Opening Hours</div>
+        <div class="info-card-val"><strong>Sun – Thu:</strong> 11:00 AM – 7:00 PM<br><strong>Fri – Sat & Holidays:</strong> 10:00 AM – 8:00 PM</div>
+      </div>
+    </div>
+    <div class="info-card sr">
+      <div class="info-card-icon">📍</div>
+      <div class="info-card-body">
+        <div class="info-card-label">Location</div>
+        <div class="info-card-val">Dhaka–Ashulia Highway, Jamgora,<br>Ashulia, Savar, Dhaka 1349</div>
+      </div>
+    </div>
+    <div class="info-card sr">
+      <div class="info-card-icon">📞</div>
+      <div class="info-card-body">
+        <div class="info-card-label">Contact Us</div>
+        <div class="info-card-val"><strong>Phone:</strong> 01969-910100<br><strong>Email:</strong> info@fantasykingdom.net</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div id="cta">
+  <div class="cta-inner">
+    <div class="cta-bg-text">FK</div>
+    <div class="sr">
+      <div class="section-kicker">Don't Wait</div>
+      <h2 class="cta-h2">Your Next<br><span>Great Story</span><br>Starts Here</h2>
+      <p class="cta-p">Millions of memories made. Countless smiles created. Now it's your turn to step into the magic.</p>
+    </div>
+    <div class="cta-right sr">
+      <a href="https://fantasykingdom.net/ticket/" target="_blank" class="cta-box">
+        <span class="cta-box-icon">🎟️</span>
+        <div class="cta-box-text">
+          <div class="cta-box-title">Book Tickets Online</div>
+          <div class="cta-box-sub">Skip the queue — buy in advance</div>
+        </div>
+      </a>
+      <a href="https://resortatlantis.net/" target="_blank" class="cta-box">
+        <span class="cta-box-icon">🏨</span>
+        <div class="cta-box-text">
+          <div class="cta-box-title">Book Resort Atlantis</div>
+          <div class="cta-box-sub">Luxury stays at the park</div>
+        </div>
+      </a>
+      <a href="tel:01969-910100" class="cta-box">
+        <span class="cta-box-icon">📞</span>
+        <div class="cta-box-text">
+          <div class="cta-box-title">Call for Group Packages</div>
+          <div class="cta-box-sub">01969-910100 · Mon–Sat</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="test-wrap">
+    <h2 class="test-h2 sr">What Guests <span>Love</span></h2>
+    <div class="test-cards">
+      <div class="tcard2 sr">
+        <div class="tc2-stars">★★★★★</div>
+        <p class="tc2-text">"Fantasy Kingdom is truly the best place for fun and entertainment. The rides are world-class and the entire experience is magical for the whole family."</p>
+        <div class="tc2-author">
+          <div class="tc2-avatar" style="background:rgba(255,45,85,0.2);color:var(--vivid)">SA</div>
+          <div><div class="tc2-name">Sadia</div><div class="tc2-loc">Dhaka, Bangladesh</div></div>
+        </div>
+      </div>
+      <div class="tcard2 sr">
+        <div class="tc2-stars">★★★★★</div>
+        <p class="tc2-text">"I would always recommend Fantasy Kingdom. The atmosphere is incredible, the staff are warm, and the memories you make here last forever."</p>
+        <div class="tc2-author">
+          <div class="tc2-avatar" style="background:rgba(123,47,255,0.2);color:var(--purple)">AM</div>
+          <div><div class="tc2-name">Amilthan</div><div class="tc2-loc">Dhaka, Bangladesh</div></div>
+        </div>
+      </div>
+      <div class="tcard2 sr">
+        <div class="tc2-stars">★★★★★</div>
+        <p class="tc2-text">"A great picnic spot! This is the top corporate outing venue in all of Dhaka. Our team had an absolute blast — would come back every year."</p>
+        <div class="tc2-author">
+          <div class="tc2-avatar" style="background:rgba(0,212,255,0.15);color:var(--cyan)">GA</div>
+          <div><div class="tc2-name">Golam Azam</div><div class="tc2-loc">Dhaka, Bangladesh</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <img src="https://fantasykingdom.net/wp-content/uploads/2021/07/fantasy-logo-white.webp" alt="Fantasy Kingdom" style="height:40px" onerror="this.style.display='none'">
+        <div class="fb-tagline">Where Magic<br>Lives</div>
+        <p class="fb-p">Bangladesh's first and largest amusement park complex. Crafting magical memories since 2002. A proud IAAPA & BAAPA member.</p>
+        <div class="socials">
+          <a href="https://facebook.com/fantasykingdomhq" target="_blank" class="soc">f</a>
+          <a href="https://instagram.com/fantasykingdomhq" target="_blank" class="soc">in</a>
+          <a href="https://www.youtube.com/fantasykingdomhq" target="_blank" class="soc">▶</a>
+          <a href="https://linkedin.com/company/fantasykingdomhq" target="_blank" class="soc">li</a>
+        </div>
+      </div>
+      <div>
+        <div class="fc-h">Parks</div>
+        <ul class="fc-links">
+          <li><a href="#">Fantasy Kingdom</a></li>
+          <li><a href="#">Water Kingdom</a></li>
+          <li><a href="#">Xtreme Racing</a></li>
+          <li><a href="#">Heritage Park</a></li>
+          <li><a href="#">Resort Atlantis</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="fc-h">Visit</div>
+        <ul class="fc-links">
+          <li><a href="#">Buy Tickets</a></li>
+          <li><a href="#">Membership</a></li>
+          <li><a href="#">Group Packages</a></li>
+          <li><a href="#">Picnic Booking</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="fc-h">Find Us</div>
+        <div class="fc-contact-row">
+          <span class="ci">📍</span>
+          <span>Dhaka–Ashulia Hwy, Jamgora, Ashulia, Savar, Dhaka 1349</span>
+        </div>
+        <div class="fc-contact-row">
+          <span class="ci">📞</span>
+          <span>01969-910100</span>
+        </div>
+        <div class="fc-contact-row">
+          <span class="ci">✉️</span>
+          <span>info@fantasykingdom.net</span>
+        </div>
+        <div class="fc-contact-row">
+          <span class="ci">🕐</span>
+          <span>Sun–Thu: 11AM–7PM<br>Fri–Sat: 10AM–8PM</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Fantasy Kingdom Complex · Concord Entertainment Co. Ltd. All rights reserved.</p>
+      <a href="https://fantasykingdom.net/ticket/" target="_blank">Book Tickets →</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Ticker
+const tickerItems = [
+  '🎡 Fantasy Kingdom', '🌊 Water Kingdom', '🏎️ Xtreme Racing', '🏛️ Heritage Park', '🏨 Resort Atlantis',
+  '★ Open 7 Days a Week', '🎟️ Buy Tickets Online', '📍 Ashulia, Dhaka', '★ Est. 2002', '👥 500+ Team Members',
+];
+const inner = document.getElementById('tickerInner');
+[...tickerItems,...tickerItems].forEach(t => {
+  const div = document.createElement('div');
+  div.className = 'ticker-item';
+  div.innerHTML = `<span class="ticker-dot"></span>${t}`;
+  inner.appendChild(div);
+});
+
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// Stats counter
+const statsObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.querySelectorAll('[data-target]').forEach(el => {
+        const target = +el.dataset.target;
+        let n = 0;
+        const step = Math.max(1, Math.ceil(target / 35));
+        const t = setInterval(() => {
+          n = Math.min(n + step, target);
+          el.textContent = n + (el.parentElement.querySelector('.stat-lbl').textContent.includes('Acre') ? '' : '') + '+';
+          if(n >= target) { el.textContent = target + '+'; clearInterval(t); }
+        }, 40);
+      });
+      statsObs.unobserve(e.target);
+    }
+  });
+}, {threshold:0.5});
+statsObs.observe(document.querySelector('.stats-bar'));
+
+// Rides marquee
+const rides1 = [
+  {i:'🎢',n:'Roller Coaster'},{i:'💧',n:'Giant Splash'},{i:'🎠',n:'Ferris Wheel'},{i:'🚗',n:'Bumper Car'},
+  {i:'🌀',n:'Vortex Tunnel'},{i:'⛵',n:'Santa Maria'},{i:'🚀',n:'Sky Hopper'},{i:'🪄',n:'Magic Carpet'},
+  {i:'🎡',n:'Top Spin'},{i:'🏎️',n:'Speed Way'},{i:'🐴',n:'Pony Adventure'},{i:'🛶',n:'Bumper Boat'},
+];
+const rides2 = [
+  {i:'🎭',n:'3D Cinema'},{i:'🗼',n:'Moving Tower'},{i:'🐦',n:'Whirly Bird'},{i:'🚂',n:'Zuzu Train'},
+  {i:'☀️',n:'Sun & Moon'},{i:'🦘',n:'Happy Kangaroo'},{i:'🌀',n:'Izzy Dizzy'},{i:'⚡',n:'Zip Around'},
+  {i:'🌟',n:'9D Cinema'},{i:'🌪️',n:'Rock n Roll'},{i:'🏠',n:'Igloo House'},{i:'🚜',n:'Bull Dozer'},
+];
+function makeRow(rides, id) {
+  const row = document.getElementById(id);
+  [...rides,...rides].forEach(r => {
+    const p = document.createElement('div');
+    p.className = 'ride-pill';
+    p.innerHTML = `<span class="rp-icon">${r.i}</span><span class="rp-name">${r.n}</span>`;
+    row.appendChild(p);
+  });
+}
+makeRow(rides1,'row1'); makeRow(rides2,'row2');
+
+// Scroll reveal
+const srObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('in'); srObs.unobserve(e.target); }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.sr').forEach(el => srObs.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+</script>
+</body>
+</html>
