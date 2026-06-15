@@ -1315,7 +1315,7 @@ footer {
 @media (max-width:768px) {
   nav {
     position: fixed;
-    top: 80px;
+    top: 90px;
     left: 0;
     right: 0;
     background: var(--white);
