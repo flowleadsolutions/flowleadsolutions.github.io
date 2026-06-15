@@ -16,6 +16,7 @@
   --orange: #FF4C00;
   --orange-deep: #D63E00;
   --orange-tint: #FFE7DB;
+  --blue: #2776AE;
 }
 
 html {
@@ -365,7 +366,7 @@ section {
   font-size: 1.25rem;
   letter-spacing: 0.01em;
   margin-bottom: 0.75rem;
-  color: var(--ink);
+  color: var(--blue);
   text-transform: uppercase;
 }
 
@@ -1230,7 +1231,7 @@ footer {
 
 .family-stats div {
   background: var(--white);
-  padding: 1.5rem 1rem;
+  padding: 0.5rem 0.7rem;
   text-align: center;
 }
 
