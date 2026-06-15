@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOLD Plumbing – Columbus, TX</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #FFFFFF;
+    --cream: #F7F4EF;
+    --ink: #16181A;
+    --ink-soft: #3A3D40;
+    --gray: #767B82;
+    --line: #E6E1D8;
+    --orange: #FF4C00;
+    --orange-deep: #D63E00;
+    --orange-tint: #FFE7DB;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-logo {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.6rem; letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+  .nav-logo span { color: var(--orange); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--ink-soft);
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--orange); }
+  .nav-cta {
+    background: var(--orange); color: var(--white);
+    border: none; padding: 0.7rem 1.6rem;
+    font-family: 'Inter', sans-serif; font-weight: 700;
+    font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.2s, transform 0.1s;
+    text-decoration: none; display: inline-block;
+  }
+  .nav-cta:hover { background: var(--orange-deep); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1.15fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    gap: 2rem;
+  }
+  .hero-content { position: relative; z-index: 2; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--orange-tint); border: 1px solid rgba(255,76,0,0.2);
+    padding: 0.4rem 1rem; margin-bottom: 1.75rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--orange-deep);
+  }
+  .hero-badge::before { content: '●'; color: var(--orange); font-size: 0.6rem; }
+  .hero h1 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(3.2rem, 6.4vw, 5.8rem);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+    color: var(--ink);
+  }
+  .hero h1 em {
+    font-style: normal; display: block;
+    color: var(--orange);
+  }
+  .hero p {
+    font-size: 1.1rem; color: var(--gray);
+    max-width: 38ch; line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--orange); color: var(--white);
+    padding: 1rem 2.2rem; text-decoration: none;
+    font-weight: 700; font-size: 0.9rem; letter-spacing: 0.04em;
+    text-transform: uppercase; transition: all 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--orange-deep); transform: translateY(-2px); }
+  .btn-outline {
+    border: 2px solid var(--ink); color: var(--ink);
+    padding: 0.9rem 2.2rem; text-decoration: none;
+    font-weight: 700; font-size: 0.9rem; letter-spacing: 0.04em;
+    text-transform: uppercase; transition: all 0.2s; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+
+  /* ── HERO VISUAL: WORK ORDER TAG ── */
+  .hero-visual { position: relative; z-index: 2; display: flex; justify-content: center; }
+  .tag {
+    background: var(--cream);
+    border: 1px dashed var(--line);
+    width: 100%; max-width: 380px;
+    padding: 2.5rem 2rem 2rem;
+    position: relative;
+    transform: rotate(2deg);
+    box-shadow: 0 20px 50px rgba(22,24,26,0.08);
+  }
+  .tag::before {
+    content: '';
+    position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--white); border: 1px dashed var(--line);
+  }
+  .tag-top {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gray); margin-bottom: 1.5rem;
+    border-bottom: 1px dashed var(--line); padding-bottom: 1rem;
+  }
+  .tag-top .ticket-no { color: var(--orange); font-weight: 700; }
+  .tag-rating {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 4.5rem; line-height: 1; color: var(--ink);
+    display: flex; align-items: baseline; gap: 0.5rem;
+  }
+  .tag-rating span { color: var(--orange); font-size: 1.8rem; }
+  .tag-stars { color: var(--orange); font-size: 1.1rem; letter-spacing: 0.15em; margin: 0.6rem 0 1.5rem; }
+  .tag-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--line); border: 1px solid var(--line); margin-bottom: 1.5rem;
+  }
+  .tag-grid div { background: var(--white); padding: 1rem; }
+  .tag-grid .n { font-family: 'Archivo Black', sans-serif; font-size: 1.8rem; color: var(--ink); }
+  .tag-grid .l { font-size: 0.7rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
+  .tag-call {
+    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    background: var(--ink); color: var(--white);
+    padding: 1rem; text-decoration: none;
+    font-family: 'Space Mono', monospace; font-weight: 700; font-size: 1rem; letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .tag-call:hover { background: var(--orange); }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--orange);
+    overflow: hidden; height: 46px;
+    display: flex; align-items: center;
+  }
+  .ticker-track {
+    display: flex; gap: 3.5rem; animation: tick 28s linear infinite; white-space: nowrap;
+    padding: 0 2rem;
+  }
+  .ticker-track span {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--white);
+  }
+  .ticker-track span::before { content: '// '; opacity: 0.6; }
+  @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── SECTION GENERAL ── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--orange);
+    margin-bottom: 0.9rem; display: flex; align-items: center; gap: 0.6rem;
+  }
+  .section-label::before { content: ''; display: inline-block; width: 30px; height: 2px; background: var(--orange); }
+  .section-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(2.2rem, 4.6vw, 3.6rem); line-height: 1.05;
+    letter-spacing: -0.01em; margin-bottom: 0.5rem; color: var(--ink);
+  }
+  .section-title em { font-style: normal; color: var(--orange); }
+
+  /* ── SERVICES ── */
+  .services-section { background: var(--cream); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .service-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    padding: 2.5rem 2rem 2rem; position: relative;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--cream); border: 1px solid var(--line);
+  }
+  .service-card:hover { border-color: var(--orange); transform: translateY(-4px); }
+  .service-card:hover .s-icon { color: var(--orange); }
+  .s-icon { font-size: 2.2rem; margin-bottom: 1.2rem; display: block; transition: color 0.25s; }
+  .service-card h3 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.25rem; letter-spacing: 0.01em; margin-bottom: 0.75rem; color: var(--ink);
+    text-transform: uppercase;
+  }
+  .service-card p { font-size: 0.92rem; color: var(--gray); line-height: 1.7; }
+  .s-num {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem; color: var(--gray); letter-spacing: 0.1em;
+  }
+
+  /* ── WHY ── */
+  .why-section {
+    background: var(--white);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .why-visual { position: relative; display: flex; justify-content: center; }
+  .stamp {
+    width: 280px; height: 280px; border-radius: 50%;
+    border: 3px solid var(--orange);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transform: rotate(-8deg);
+    position: relative;
+  }
+  .stamp::before, .stamp::after {
+    content: ''; position: absolute; border-radius: 50%; border: 1px dashed var(--orange-tint);
+  }
+  .stamp::before { width: 240px; height: 240px; }
+  .stamp::after { width: 200px; height: 200px; }
+  .stamp .big-num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 4rem; color: var(--ink); line-height: 1;
+  }
+  .stamp .big-num span { color: var(--orange); }
+  .stamp .stamp-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gray); margin-top: 0.6rem;
+  }
+  .why-list { list-style: none; margin-top: 2rem; }
+  .why-list li {
+    display: flex; align-items: flex-start; gap: 1.2rem;
+    padding: 1.3rem 0; border-bottom: 1px solid var(--line);
+  }
+  .why-list li:last-child { border-bottom: none; }
+  .why-check {
+    width: 30px; height: 30px; background: var(--cream);
+    border: 1px solid var(--line); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; color: var(--orange); margin-top: 2px;
+    font-weight: 700;
+  }
+  .why-list li h4 { font-weight: 700; font-size: 1rem; margin-bottom: 0.3rem; color: var(--ink); }
+  .why-list li p { font-size: 0.9rem; color: var(--gray); line-height: 1.65; }
+
+  /* ── REVIEWS ── */
+  .reviews-section { background: var(--cream); }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .review-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    padding: 2rem; position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .review-card:hover { border-color: var(--orange); transform: translateY(-3px); }
+  .review-stars { color: var(--orange); font-size: 0.9rem; letter-spacing: 0.14em; margin-bottom: 1rem; }
+  .review-card p { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 1.5rem; }
+  .reviewer { display: flex; align-items: center; gap: 0.75rem; padding-top: 1.2rem; border-top: 1px dashed var(--line); }
+  .rev-avatar {
+    width: 38px; height: 38px;
+    background: var(--cream); border: 1px solid var(--line);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem; font-weight: 700; color: var(--orange);
+  }
+  .rev-name { font-weight: 700; font-size: 0.9rem; color: var(--ink); }
+  .rev-date { font-size: 0.75rem; color: var(--gray); font-family: 'Space Mono', monospace; }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    background: var(--ink);
+    padding: 5rem 4rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .cta-section h2 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+    color: var(--white); line-height: 1.1; letter-spacing: -0.01em;
+  }
+  .cta-section h2 span {
+    display: block; font-size: 0.42em; font-family: 'Space Mono', monospace; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.8rem;
+  }
+  .cta-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-dark {
+    background: var(--orange); color: var(--white);
+    padding: 1rem 2.2rem; text-decoration: none;
+    font-weight: 700; font-size: 0.9rem; letter-spacing: 0.04em;
+    text-transform: uppercase; transition: all 0.2s; display: inline-block;
+  }
+  .btn-dark:hover { background: var(--orange-deep); transform: translateY(-2px); }
+  .btn-ghost-dark {
+    border: 2px solid rgba(255,255,255,0.25); color: var(--white);
+    padding: 1rem 2.2rem; text-decoration: none;
+    font-weight: 600; font-size: 0.9rem; letter-spacing: 0.04em;
+    text-transform: uppercase; transition: all 0.2s; display: inline-block;
+  }
+  .btn-ghost-dark:hover { border-color: var(--orange); color: var(--orange); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--white);
+    padding: 4rem 4rem 2rem;
+    border-top: 1px solid var(--line);
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+  .footer-logo {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.8rem; letter-spacing: 0.02em; margin-bottom: 1rem; color: var(--ink);
+  }
+  .footer-logo span { color: var(--orange); }
+  .footer-desc { font-size: 0.85rem; color: var(--gray); line-height: 1.7; max-width: 26ch; margin-bottom: 1.5rem; }
+  .footer-phone {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700; color: var(--orange); text-decoration: none; font-size: 1.05rem;
+  }
+  .footer-col h4 {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700; font-size: 0.72rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink); margin-bottom: 1rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.6rem; }
+  .footer-col ul li a {
+    font-size: 0.85rem; color: var(--gray); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--orange); }
+  .footer-bottom {
+    border-top: 1px solid var(--line);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-bottom p { font-size: 0.78rem; color: var(--gray); }
+  .footer-bottom .badge {
+    font-family: 'Space Mono', monospace; color: var(--orange); font-weight: 700;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * { animation: fadeUp 0.7s ease both; }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.4s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.55s; }
+  .hero-visual { animation: fadeUp 0.8s ease both; animation-delay: 0.5s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links, .nav-cta { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; gap: 3rem; }
+    section { padding: 4rem 1.5rem; }
+    .why-section { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .cta-section { padding: 3rem 1.5rem; }
+    .tag { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <!-- <div class="nav-logo">BOLD<span>.</span></div> -->
+  <div class="nav-logo">
+    <a href="#">
+      <img src="logo.jpg" alt="BOLD Plumbing Logo" style="height: 60px; width: auto;">
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:+19797330626" class="nav-cta">Call Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">4.8 Stars · 36 Reviews · Columbus, TX</div>
+    <h1>
+      WHEN IT<br>
+      LEAKS, CALL<br>
+      <em>BOLD.</em>
+    </h1>
+    <p>Professional plumbing services in Columbus, TX — from emergency repairs to full sewer camera inspections. Done right, the first time.</p>
+    <div class="hero-btns">
+      <a href="tel:+19797330626" class="btn-primary">Call 979-733-0626</a>
+      <a href="https://boldplumbing.com" class="btn-outline">Get a Free Quote →</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="tag">
+      <div class="tag-top">
+        <span>Service Record</span>
+        <span class="ticket-no">No. 0036</span>
+      </div>
+      <div class="tag-rating">4.8 <span>/ 5</span></div>
+      <div class="tag-stars">★★★★★</div>
+      <div class="tag-grid">
+        <div>
+          <div class="n">36+</div>
+          <div class="l">5-Star Reviews</div>
+        </div>
+        <div>
+          <div class="n">100%</div>
+          <div class="l">Satisfaction</div>
+        </div>
+      </div>
+      <a href="tel:+19797330626" class="tag-call">📞 979-733-0626</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Emergency Repairs</span><span>Camera Inspections</span><span>Water Heaters</span>
+    <span>Sewer Line Replacement</span><span>Cutoff Valves</span><span>Drain Cleaning</span>
+    <span>Columbus TX</span><span>Honest Pricing</span><span>Prompt Service</span>
+    <span>Emergency Repairs</span><span>Camera Inspections</span><span>Water Heaters</span>
+    <span>Sewer Line Replacement</span><span>Cutoff Valves</span><span>Drain Cleaning</span>
+    <span>Columbus TX</span><span>Honest Pricing</span><span>Prompt Service</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" class="services-section">
+  <div class="section-label">What We Do</div>
+  <div class="section-title">Services Built for<br><em>Real Problems</em></div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="s-num">JOB / 01</span>
+      <span class="s-icon">🔭</span>
+      <h3>Camera Inspections</h3>
+      <p>Waterproof sewer & pipe cameras pinpoint blockages, cracks, root intrusion — without ever digging up your yard.</p>
+    </div>
+    <div class="service-card">
+      <span class="s-num">JOB / 02</span>
+      <span class="s-icon">🔧</span>
+      <h3>Valve & Cutoff Replacement</h3>
+      <p>All cutoff valves replaced with precision and speed. Frankie and Dakota know their craft inside out.</p>
+    </div>
+    <div class="service-card">
+      <span class="s-num">JOB / 03</span>
+      <span class="s-icon">🌡️</span>
+      <h3>Water Heater Service</h3>
+      <p>Heating element replacement, full installs, and diagnostics — we'll get your hot water back fast.</p>
+    </div>
+    <div class="service-card">
+      <span class="s-num">JOB / 04</span>
+      <span class="s-icon">🚿</span>
+      <h3>Sewer Line Replacement</h3>
+      <p>From assessment to full replacement of sewer lines — straight with you every step of the way.</p>
+    </div>
+    <div class="service-card">
+      <span class="s-num">JOB / 05</span>
+      <span class="s-icon">💧</span>
+      <h3>Drain Cleaning</h3>
+      <p>Stubborn clogs cleared efficiently. We prevent costly spring and summer backups before they happen.</p>
+    </div>
+    <div class="service-card">
+      <span class="s-num">JOB / 06</span>
+      <span class="s-icon">🏠</span>
+      <h3>Spring Plumbing Checkup</h3>
+      <p>Comprehensive seasonal inspection to ensure your system is ready for the months ahead — early detection saves money.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why" class="why-section">
+  <div class="why-visual">
+    <div class="stamp">
+      <div class="big-num">4.8<span>★</span></div>
+      <div class="stamp-sub">Verified · 36 Reviews</div>
+    </div>
+  </div>
+  <div>
+    <div class="section-label">Why Choose Bold</div>
+    <div class="section-title">Plumbers You Can<br><em>Trust</em></div>
+    <ul class="why-list">
+      <li>
+        <div class="why-check">✓</div>
+        <div>
+          <h4>They Show Up When They Say</h4>
+          <p>"They came when they said" — every review says the same thing. Your time matters to us.</p>
+        </div>
+      </li>
+      <li>
+        <div class="why-check">✓</div>
+        <div>
+          <h4>Honest, Fair Pricing</h4>
+          <p>No surprise bills. We tell you what it costs up front and stick to it. Always.</p>
+        </div>
+      </li>
+      <li>
+        <div class="why-check">✓</div>
+        <div>
+          <h4>Experienced Technicians</h4>
+          <p>Frankie and Dakota bring real expertise to every job. Efficient, thorough, and professional.</p>
+        </div>
+      </li>
+      <li>
+        <div class="why-check">✓</div>
+        <div>
+          <h4>Non-Invasive Camera Technology</h4>
+          <p>See exactly what's wrong before we touch a shovel — saving you time, money, and your lawn.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="reviews-section">
+  <div class="section-label">Real Customers</div>
+  <div class="section-title">What Columbus Is<br><em>Saying</em></div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p>They worked very efficiently and did a great job replacing all my cutoffs and the heating element in my hot water heater. I would highly recommend.</p>
+      <div class="reviewer">
+        <div class="rev-avatar">JM</div>
+        <div>
+          <div class="rev-name">Josh Melnar</div>
+          <div class="rev-date">7 months ago</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p>They came when they said and everyone was straight with you. I needed sewer lines replaced — after so many bad experiences with other services, these guys delivered.</p>
+      <div class="reviewer">
+        <div class="rev-avatar">AJ</div>
+        <div>
+          <div class="rev-name">Anna Johnston</div>
+          <div class="rev-date">8 months ago</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p>Frankie and Dakota were prompt, thorough, and know their craft. I am glad to know we have found them and Bold Plumbing.</p>
+      <div class="reviewer">
+        <div class="rev-avatar">BS</div>
+        <div>
+          <div class="rev-name">Brittany Scarff</div>
+          <div class="rev-date">5 months ago</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta-section">
+  <div>
+    <h2>
+      <span>Ready to fix it right?</span>
+      Don't Wait For A Small Issue<br>To Become A Big One.
+    </h2>
+  </div>
+  <div class="cta-btns">
+    <a href="tel:+19797330626" class="btn-dark">Call 979-733-0626</a>
+    <a href="https://boldplumbing.com" class="btn-ghost-dark">Request a Quote →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">BOLD<span>.</span></div>
+      <p class="footer-desc">Professional plumbing you can count on in Columbus, TX. Serving the community with honesty, efficiency, and expertise.</p>
+      <a href="tel:+19797330626" class="footer-phone">📞 979-733-0626</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Camera Inspections</a></li>
+        <li><a href="#services">Sewer Line Replacement</a></li>
+        <li><a href="#services">Water Heater Service</a></li>
+        <li><a href="#services">Drain Cleaning</a></li>
+        <li><a href="#services">Valve Replacement</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#why">About Us</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Request a Quote</a></li>
+        <li><a href="https://boldplumbing.com">boldplumbing.com</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">1203 Travis St</a></li>
+        <li><a href="#">Columbus, TX 78934</a></li>
+        <li><a href="#">Mon–Fri: 8AM–5PM</a></li>
+        <li><a href="tel:+19797330626">979-733-0626</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 BOLD Plumbing. All rights reserved. Columbus, TX.</p>
+    <p class="badge">4.8 ★ on Google · 36 Reviews</p>
+  </div>
+</footer>
+
+</body>
+</html>
