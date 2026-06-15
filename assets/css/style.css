@@ -257,15 +257,16 @@ section {
 }
 
 .btn-nav {
-  background: var(--gradient-brand);
+  background: var(--ink);
   color: var(--white);
   padding: 11px 22px;
-  box-shadow: 0 6px 18px rgba(15, 110, 46, .22);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .18);
 }
 
 .btn-nav:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(15, 110, 46, .32);
+  background: #2a2a2a;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .32);
 }
 
 .full-width {
@@ -294,7 +295,7 @@ header.scrolled {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  height: 90px;
 }
 
 .logo a {
@@ -304,8 +305,8 @@ header.scrolled {
 }
 
 .logo-img {
-  height: 40px;
-  width: 40px;
+  height: 80px;
+  width: 80px;
   object-fit: contain;
 }
 
@@ -370,7 +371,7 @@ nav a:not(.btn-nav):hover::after {
 /* ── Hero ────────────────────────────────────────────────────────────────── */
 .hero {
   position: relative;
-  padding: 160px 0 100px;
+  padding: 100px 0;
   background: var(--bg-soft);
   overflow: hidden;
 }
@@ -529,7 +530,8 @@ nav a:not(.btn-nav):hover::after {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: var(--gradient-dark);
+  background: var(--white);
+  border: 1.5px solid var(--green-500);
   box-shadow: var(--shadow-glow);
   animation: float 6s ease-in-out infinite;
 }
@@ -565,7 +567,7 @@ nav a:not(.btn-nav):hover::after {
   position: relative;
   width: 62%;
   z-index: 2;
-  filter: drop-shadow(0 16px 36px rgba(7, 51, 26, .4));
+  /* filter: drop-shadow(0 16px 36px rgba(7, 51, 26, .4)); */
   animation: float 6s ease-in-out infinite;
   animation-delay: -3s;
 }
@@ -1168,22 +1170,17 @@ footer {
 }
 
 .footer-brand .logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 14px;
+    display: inline-block;
+    margin-bottom: 10px;
+    background: #ffffff;
+    padding: 12px;
+    border-radius: var(--radius-md);
 }
 
 .footer-brand .logo img {
-  height: 34px;
-  width: 34px;
+  height: 100px;
+  width: 100px;
   object-fit: contain;
-}
-
-.footer-brand .logo span {
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: var(--white);
 }
 
 .footer-brand>p {
@@ -1416,3 +1413,7 @@ footer {
     transition-duration: .01ms !important;
   }
 }
+
+
+
+
