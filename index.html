@@ -1,383 +1,466 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowLead Solutions | Web, App & Software Development</title>
+  <meta name="description" content="Custom web, mobile app, and software development that connects your stack, automates your workflows, and scales your business.">
+  <meta name="keywords" content="web development, app development, software development, custom software, mobile app, FlowLead">
 
-  <title>FlowLead Solutions | Precision Lead Management</title>
-    <meta content="Lead cleanup, CRM hygiene, inbox prep, and full-stack web, app, and software development for growing sales teams." name="description">
-    <meta content="lead management, CRM hygiene, data cleaning, web development, app development, software development" name="keywords">
+  <link href="assets/img/icon.png" rel="icon">
+  <link href="assets/img/icon.png" rel="apple-touch-icon">
 
-    <!-- Favicons -->
-    <link href="assets/img/icon.png" rel="icon">
-    <link href="assets/img/icon.png" rel="apple-touch-icon">
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
-  <!-- Libraries -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
 
-<!-- Navbar -->
-<header>
-  <div class="container nav-container">
-    <div class="logo">
-      <a href="index.html">
-        <img src="assets/img/logo.png" alt="FlowLead Logo" class="logo-img">
-        <!-- <span>FlowLead</span> -->
-      </a>
+  <!-- ───── Navbar ───── -->
+  <header>
+    <div class="container nav-container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="assets/img/logo.png" alt="FlowLead Logo" class="logo-img">
+        </a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#techstack">Tech Stack</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact" class="btn-nav">Start a Project</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#process">Process</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact" class="btn-nav">Get Started</a></li>
-      </ul>
-    </nav>
-    <button class="nav-toggle" aria-label="Toggle navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-</header>
+  </header>
 
-<main>
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="hero-bg-pattern"></div>
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
-          <span class="badge-new">
-            <span class="pulse"></span>
-            Trusted by 50+ Sales Teams
-          </span>
-          <h1>Turn Messy Data Into <span class="text-gradient">Pure Revenue</span></h1>
-          <p>We eliminate the friction in your sales pipeline by handling the heavy lifting of lead cleaning, CRM hygiene, follow-up preparation, and the custom software that ties it all together.</p>
-          <div class="hero-btns">
-            <button class="btn-primary" onclick="scrollToContact()">
-              Free Data Audit
-              <i data-lucide="arrow-right"></i>
-            </button>
-            <a href="#services" class="btn-secondary">View Services</a>
-          </div>
-        </div>
-        <div class="hero-visual" data-aos="zoom-in" data-aos-duration="1200">
-          <div class="floating-card c1">
-            <i data-lucide="check-circle" class="text-success"></i>
-            <div>
-              <small>Data Accuracy</small>
-              <strong>99.8%</strong>
+  <main>
+
+    <!-- ───── Hero ───── -->
+    <section id="home" class="hero">
+      <div class="hero-bg-pattern"></div>
+      <div class="container">
+        <div class="hero-grid">
+
+          <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+            <span class="badge-new">
+              <span class="pulse"></span>
+              50+ Products Shipped Worldwide
+            </span>
+            <h1>We Build Software That <span class="text-gradient">Scales Your Business</span></h1>
+            <p>From pixel-perfect websites to powerful mobile apps and custom backend systems — FlowLead turns your
+              ideas into production-ready software, fast.</p>
+            <div class="hero-btns">
+              <button class="btn-primary" onclick="scrollToContact()">
+                Start a Project
+                <i class="bi bi-arrow-right"></i>
+              </button>
+              <a href="#services" class="btn-secondary">View Services</a>
+            </div>
+            <div class="hero-tech">
+              <span>We build with</span>
+              <div class="tech-badge"><i class="bi bi-play-circle"></i> React</div>
+              <div class="tech-badge"><i class="bi bi-phone"></i> Flutter</div>
+              <div class="tech-badge"><i class="bi bi-server"></i> Node.js</div>
+              <div class="tech-badge"><i class="bi bi-cloud"></i> AWS</div>
             </div>
           </div>
-          <div class="floating-card c2">
-            <i data-lucide="trending-up" class="text-primary"></i>
-            <div>
-              <small>Leads Cleaned</small>
-              <strong>1.2M+</strong>
-            </div>
-          </div>
-          <div class="hero-image-container">
-            <div class="gradient-sphere"></div>
-            <img src="assets/img/logo_wh.png" alt="FlowLead Solutions" class="hero-logo">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Stats Section -->
-  <section class="stats" data-aos="fade-up">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item">
-          <h3 class="counter">99%</h3>
-          <p>Cleaning Accuracy</p>
-        </div>
-        <div class="stat-item">
-          <h3 class="counter">40%</h3>
-          <p>Time Saved for AEs</p>
-        </div>
-        <div class="stat-item">
-          <h3 class="counter">24h</h3>
-          <p>Turnaround Time</p>
-        </div>
-        <div class="stat-item">
-          <h3 class="counter">500+</h3>
-          <p>Clients Worldwide</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section id="services" class="services">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <span class="sub-title">Expertise</span>
-        <h2>High-Impact Solutions</h2>
-        <p>Strategic data management and custom-built software to keep your sales engine running at peak performance.</p>
-      </div>
-
-      <div class="services-grid">
-        <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="card-icon b-blue">
-            <i data-lucide="brush"></i>
-          </div>
-          <h3>Lead Cleanup</h3>
-          <p>Smart deduplication and standardization. We turn chaotic spreadsheets into organized gold mines.</p>
-          <ul class="card-list">
-            <li>Standardized Formatting</li>
-            <li>Advanced Deduplication</li>
-            <li>Enrichment Readiness</li>
-          </ul>
-        </div>
-
-        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="card-icon b-cyan">
-            <i data-lucide="database"></i>
-          </div>
-          <h3>CRM Hygiene</h3>
-          <p>Keep your HubSpot or Salesforce pristine. We fix outdated records and fill missing fields.</p>
-          <ul class="card-list">
-            <li>Automated Sync Checks</li>
-            <li>Field Mapping Optimization</li>
-            <li>Historical Data Cleanup</li>
-          </ul>
-        </div>
-
-        <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="card-icon b-indigo">
-            <i data-lucide="mail-check"></i>
-          </div>
-          <h3>Inbox Prep</h3>
-          <p>Strategic follow-up organization. We ensure you never miss a high-intent lead again.</p>
-          <ul class="card-list">
-            <li>Priority Scoring</li>
-            <li>Sequence Readying</li>
-            <li>Response Tracking</li>
-          </ul>
-        </div>
-
-        <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="card-icon b-lime">
-            <i data-lucide="code-2"></i>
-          </div>
-          <h3>Web Development</h3>
-          <p>Fast, responsive websites and landing pages built to convert your clean leads into booked calls.</p>
-          <ul class="card-list">
-            <li>Custom Landing Pages</li>
-            <li>Performance Optimization</li>
-            <li>CMS & E-commerce Builds</li>
-          </ul>
-        </div>
-
-        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="card-icon b-forest">
-            <i data-lucide="smartphone"></i>
-          </div>
-          <h3>App Development</h3>
-          <p>Native and cross-platform mobile apps that put your pipeline and reporting in your team's pocket.</p>
-          <ul class="card-list">
-            <li>iOS & Android Builds</li>
-            <li>Cross-Platform Frameworks</li>
-            <li>App Store Deployment</li>
-          </ul>
-        </div>
-
-        <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="card-icon b-mint">
-            <i data-lucide="terminal-square"></i>
-          </div>
-          <h3>Software Development</h3>
-          <p>Custom internal tools, automations, and integrations that connect your stack and remove busywork.</p>
-          <ul class="card-list">
-            <li>Custom Tools & Dashboards</li>
-            <li>API & Workflow Automation</li>
-            <li>Third-Party Integrations</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Process Section -->
-  <section id="process" class="process">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <span class="sub-title">Workflow</span>
-        <h2>How We Scale Your Growth</h2>
-      </div>
-
-      <div class="process-steps">
-        <div class="step" data-aos="fade-up" data-aos-delay="100">
-          <div class="step-icon-wrapper">
-            <div class="step-number">1</div>
-            <i data-lucide="search"></i>
-          </div>
-          <div class="step-content">
-            <h4>Analyze</h4>
-            <p>We perform a deep-dive audit of your current data health and pipeline friction points.</p>
-          </div>
-        </div>
-        <div class="step" data-aos="fade-up" data-aos-delay="200">
-          <div class="step-icon-wrapper">
-            <div class="step-number">2</div>
-            <i data-lucide="zap"></i>
-          </div>
-          <div class="step-content">
-            <h4>Optimize</h4>
-            <p>Our experts apply proprietary frameworks to clean, fix, and organize your lead records.</p>
-          </div>
-        </div>
-        <div class="step" data-aos="fade-up" data-aos-delay="300">
-          <div class="step-icon-wrapper">
-            <div class="step-number">3</div>
-            <i data-lucide="refresh-cw"></i>
-          </div>
-          <div class="step-content">
-            <h4>Integrate</h4>
-            <p>Cleaned data is pushed back to your CRM, ready for your sales team to start closing.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="about">
-    <div class="container">
-      <div class="about-wrapper">
-        <div class="about-content" data-aos="fade-right">
-          <span class="sub-title">Our Story</span>
-          <h2>Efficiency Through <span class="text-gradient">Precision</span></h2>
-          <p>Founded by sales operations experts, FlowLead Solutions was built to solve the #1 problem in modern sales: <strong>Dirty Data.</strong></p>
-          <p>We believe that your most talented sales people should be talking to prospects, not standardizing phone numbers or hunting for duplicates.</p>
-          <div class="about-features">
-            <div class="a-feat">
-              <i data-lucide="check-circle"></i>
-              <span>Human-in-the-loop accuracy</span>
-            </div>
-            <div class="a-feat">
-              <i data-lucide="check-circle"></i>
-              <span>Enterprise-grade security</span>
-            </div>
-            <div class="a-feat">
-              <i data-lucide="check-circle"></i>
-              <span>Seamless CRM native syncing</span>
-            </div>
-          </div>
-        </div>
-        <div class="about-stats" data-aos="fade-left">
-          <div class="about-stat-card">
-            <h4>10M+</h4>
-            <p>Records Standardized</p>
-          </div>
-          <div class="about-stat-card">
-            <h4>$50M</h4>
-            <p>Pipeline Value Unlocked</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="contact">
-    <div class="container">
-      <div class="contact-wrapper" data-aos="fade-up">
-        <div class="contact-info">
-          <h2>Ready to <span class="text-gradient">Automate Your Data?</span></h2>
-          <p>Book a 15-minute discovery call and get a free lead-health assessment report.</p>
-          <div class="contact-items">
-            <div class="c-item">
-              <i data-lucide="mail"></i>
-              <span>hello@flowlead.com</span>
-            </div>
-            <div class="c-item">
-              <i data-lucide="calendar"></i>
-              <span>Book a Demo</span>
-            </div>
-          </div>
-        </div>
-        <div class="contact-form-side">
-          <form id="contactForm">
-            <div class="form-grid">
-              <div class="input-group">
-                <label>Name</label>
-                <input type="text" placeholder="John Doe" required>
-              </div>
-              <div class="input-group">
-                <label>Work Email</label>
-                <input type="email" placeholder="john@company.com" required>
+          <div class="hero-visual" data-aos="zoom-in" data-aos-duration="1200">
+            <div class="floating-card c1">
+              <i class="bi bi-lightning-charge text-success"></i>
+              <div>
+                <small>Avg. Delivery</small>
+                <strong>6 Weeks</strong>
               </div>
             </div>
-            <div class="input-group">
-              <label>Message</label>
-              <textarea placeholder="How can we help your sales team?"></textarea>
+            <div class="floating-card c2">
+              <i class="bi bi-star-fill text-primary"></i>
+              <div>
+                <small>Client Rating</small>
+                <strong>4.9 / 5.0</strong>
+              </div>
             </div>
-            <button type="submit" class="btn-primary full-width">Send Request</button>
-          </form>
-          <p id="successMsg"></p>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
+            <div class="floating-card c3">
+              <i class="bi bi-shield-check text-success"></i>
+              <div>
+                <small>Projects Live</small>
+                <strong>120+</strong>
+              </div>
+            </div>
+            <div class="hero-image-container">
+              <div class="gradient-sphere"></div>
+              <img src="assets/img/logo.png" alt="FlowLead Solutions" class="hero-logo">
+            </div>
+          </div>
 
-<!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="logo">
-          <img src="assets/img/logo_wh.png" alt="FlowLead Logo" class="logo-img">
-          <span>FlowLead</span>
-        </div>
-        <p>Building the world's most reliable lead infrastructure.</p>
-        <div class="socials">
-          <a href="https://www.facebook.com/share/1BBBHoeTvt/" target="_blank" aria-label="Facebook"><img src="assets/img/facebook.png" alt="Facebook"></a>
-          <a href="#" target="_blank" aria-label="Instagram"><img src="assets/img/instagram.png" alt="Instagram"></a>
-          <a href="#" target="_blank" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt="LinkedIn"></a>
         </div>
       </div>
-      <div class="footer-links-grid">
-        <div class="f-col">
-          <h4>Platform</h4>
-          <a href="#services">Solutions</a>
-          <a href="#process">Process</a>
-          <a href="#about">Security</a>
-        </div>
-        <div class="f-col">
-          <h4>Company</h4>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 FlowLead Solutions. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
+    </section>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="assets/js/script.js"></script>
+    <!-- ───── Stats ───── -->
+    <section class="stats" data-aos="fade-up">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <h3 class="counter">120+</h3>
+            <p>Projects Delivered</p>
+          </div>
+          <div class="stat-item">
+            <h3 class="counter">98%</h3>
+            <p>On-time Delivery Rate</p>
+          </div>
+          <div class="stat-item">
+            <h3 class="counter">6 Wk</h3>
+            <p>Average Time to Launch</p>
+          </div>
+          <div class="stat-item">
+            <h3 class="counter">50+</h3>
+            <p>Clients Worldwide</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───── Services ───── -->
+    <section id="services" class="services">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="sub-title">What We Build</span>
+          <h2>Three Core Services</h2>
+          <p>Specialized development teams for web, mobile, and bespoke software — all under one roof, working as one
+            unit.</p>
+        </div>
+
+        <div class="services-grid">
+
+          <!-- Web Dev -->
+          <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-icon b-lime">
+              <i class="bi bi-display"></i>
+            </div>
+            <h3>Web Development</h3>
+            <p>High-performance websites and web apps built for speed, conversions, and long-term maintainability — from
+              landing pages to full-scale SaaS platforms.</p>
+            <ul class="card-list">
+              <li>Custom Landing & Marketing Sites</li>
+              <li>SaaS & Web App Platforms</li>
+              <li>CMS, E-commerce & Portals</li>
+              <li>Performance & Core Web Vitals</li>
+            </ul>
+            <div class="card-tech">
+              <span>React</span><span>Next.js</span><span>Tailwind</span><span>Webflow</span>
+            </div>
+          </div>
+
+          <!-- App Dev -->
+          <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-icon b-forest">
+              <i class="bi bi-phone"></i>
+            </div>
+            <h3>App Development</h3>
+            <p>Cross-platform and native mobile apps that feel premium on every device — from MVP prototypes to full
+              production launches on iOS and Android.</p>
+            <ul class="card-list">
+              <li>iOS & Android Native Builds</li>
+              <li>Cross-Platform (Flutter / RN)</li>
+              <li>App Store Launch & Optimization</li>
+              <li>API Design & Backend Integration</li>
+            </ul>
+            <div class="card-tech">
+              <span>Flutter</span><span>React Native</span><span>Swift</span><span>Kotlin</span>
+            </div>
+          </div>
+
+          <!-- Software Dev -->
+          <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-icon b-mint">
+              <i class="bi bi-terminal"></i>
+            </div>
+            <h3>Software Development</h3>
+            <p>Robust backends, automation systems, and custom internal tools that eliminate bottlenecks and connect
+              every part of your technology stack.</p>
+            <ul class="card-list">
+              <li>Custom APIs & Microservices</li>
+              <li>Workflow & Process Automation</li>
+              <li>Dashboards & Admin Panels</li>
+              <li>Third-Party Integrations</li>
+            </ul>
+            <div class="card-tech">
+              <span>Node.js</span><span>Python</span><span>PostgreSQL</span><span>AWS</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ───── Process ───── -->
+    <section id="process" class="process">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="sub-title">How We Work</span>
+          <h2>From Brief to Launch in 4 Steps</h2>
+          <p>A transparent, collaborative process that keeps you in control at every milestone.</p>
+        </div>
+        <div class="process-steps">
+          <div class="step" data-aos="fade-up" data-aos-delay="100">
+            <div class="step-icon-wrapper">
+              <div class="step-number">1</div>
+              <i class="bi bi-list-check"></i>
+            </div>
+            <div class="step-content">
+              <h4>Discovery</h4>
+              <p>We learn your goals, users, and constraints — then map out scope, timeline, and tech architecture
+                together.</p>
+            </div>
+          </div>
+          <div class="step" data-aos="fade-up" data-aos-delay="200">
+            <div class="step-icon-wrapper">
+              <div class="step-number">2</div>
+              <i class="bi bi-pencil-square"></i>
+            </div>
+            <div class="step-content">
+              <h4>Design</h4>
+              <p>Our designers produce high-fidelity wireframes and prototypes. You review and approve before a single
+                line of code is written.</p>
+            </div>
+          </div>
+          <div class="step" data-aos="fade-up" data-aos-delay="300">
+            <div class="step-icon-wrapper">
+              <div class="step-number">3</div>
+              <i class="bi bi-code-slash"></i>
+            </div>
+            <div class="step-content">
+              <h4>Build</h4>
+              <p>Agile sprints with weekly demos. You always know what's been built and what's next — no black-box
+                development.</p>
+            </div>
+          </div>
+          <div class="step" data-aos="fade-up" data-aos-delay="350">
+            <div class="step-icon-wrapper">
+              <div class="step-number">4</div>
+              <i class="bi bi-rocket"></i>
+            </div>
+            <div class="step-content">
+              <h4>Launch & Support</h4>
+              <p>We handle deployment, monitoring, and post-launch support — so your product stays stable as it grows.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───── Tech Stack ───── -->
+    <section id="techstack" class="techstack">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="sub-title">Technologies</span>
+          <h2>Built With the Best Tools</h2>
+          <p>We pick the right technology for each project — never one-size-fits-all.</p>
+        </div>
+        <div class="techstack-grid">
+          <div class="tech-card" data-aos="fade-up" data-aos-delay="50">
+            <div class="tech-card-icon"><i class="bi bi-grid"></i></div>
+            <h4>Frontend</h4>
+            <p>React, Next.js, Vue, Tailwind CSS, Webflow</p>
+          </div>
+          <div class="tech-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="tech-card-icon"><i class="bi bi-phone"></i></div>
+            <h4>Mobile</h4>
+            <p>Flutter, React Native, Swift, Kotlin</p>
+          </div>
+          <div class="tech-card" data-aos="fade-up" data-aos-delay="150">
+            <div class="tech-card-icon"><i class="bi bi-server"></i></div>
+            <h4>Backend</h4>
+            <p>Node.js, Python, Django, FastAPI, PHP</p>
+          </div>
+          <div class="tech-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="tech-card-icon"><i class="bi bi-database"></i></div>
+            <h4>Database</h4>
+            <p>PostgreSQL, MongoDB, MySQL, Redis, Supabase</p>
+          </div>
+          <div class="tech-card" data-aos="fade-up" data-aos-delay="250">
+            <div class="tech-card-icon"><i class="bi bi-cloud"></i></div>
+            <h4>Cloud & DevOps</h4>
+            <p>AWS, GCP, Vercel, Docker, CI/CD pipelines</p>
+          </div>
+          <div class="tech-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="tech-card-icon"><i class="bi bi-plug"></i></div>
+            <h4>Integrations</h4>
+            <p>Stripe, Twilio, Zapier, HubSpot, REST & GraphQL APIs</p>
+          </div>
+          <div class="tech-card" data-aos="fade-up" data-aos-delay="350">
+            <div class="tech-card-icon"><i class="bi bi-shield"></i></div>
+            <h4>Security</h4>
+            <p>OAuth 2.0, JWT, SSL, OWASP best practices</p>
+          </div>
+          <div class="tech-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="tech-card-icon"><i class="bi bi-cpu"></i></div>
+            <h4>AI & Automation</h4>
+            <p>OpenAI, LangChain, Make.com, n8n workflows</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───── About ───── -->
+    <section id="about" class="about">
+      <div class="container">
+        <div class="about-wrapper">
+          <div class="about-content" data-aos="fade-right">
+            <span class="sub-title">About Us</span>
+            <h2>A Dev Team That Thinks Like <span class="text-gradient">Founders</span></h2>
+            <p>FlowLead Solutions was founded by engineers and product thinkers who were frustrated by agencies that
+              over-promise and under-deliver.</p>
+            <p>We operate as an <strong>embedded development partner</strong> — not a vendor. That means honest scoping,
+              clear communication, and code you'll actually be proud to own.</p>
+            <div class="about-features">
+              <div class="a-feat">
+                <i class="bi bi-check-circle"></i>
+                <span>Transparent pricing — no surprise invoices</span>
+              </div>
+              <div class="a-feat">
+                <i class="bi bi-check-circle"></i>
+                <span>You own 100% of the source code</span>
+              </div>
+              <div class="a-feat">
+                <i class="bi bi-check-circle"></i>
+                <span>Dedicated project manager on every build</span>
+              </div>
+              <div class="a-feat">
+                <i class="bi bi-check-circle"></i>
+                <span>Post-launch support & maintenance included</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-stats" data-aos="fade-left">
+            <div class="about-stat-card">
+              <h4>120+</h4>
+              <p>Products shipped across 18 industries</p>
+            </div>
+            <div class="about-stat-card">
+              <h4>4.9★</h4>
+              <p>Average client rating across all projects</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───── Contact ───── -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="contact-wrapper" data-aos="fade-up">
+          <div class="contact-info">
+            <h2>Ready to <span class="text-gradient">Build Something?</span></h2>
+            <p>Tell us about your project. We'll reply within one business day with a clear plan and honest estimate.
+            </p>
+            <div class="contact-items">
+              <div class="c-item">
+                <i class="bi bi-envelope"></i>
+                <span>hello@flowlead.com</span>
+              </div>
+              <div class="c-item">
+                <i class="bi bi-calendar"></i>
+                <span>Book a Free Discovery Call</span>
+              </div>
+              <div class="c-item">
+                <i class="bi bi-clock"></i>
+                <span>Response within 24 hours</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-form-side">
+            <form id="contactForm">
+              <div class="form-grid">
+                <div class="input-group">
+                  <label>Your Name</label>
+                  <input type="text" placeholder="Jane Smith" required>
+                </div>
+                <div class="input-group">
+                  <label>Work Email</label>
+                  <input type="email" placeholder="jane@company.com" required>
+                </div>
+              </div>
+              <div class="input-group">
+                <label>Service Needed</label>
+                <select>
+                  <option value="">Select a service…</option>
+                  <option>Web Development</option>
+                  <option>App Development</option>
+                  <option>Software Development</option>
+                  <option>Multiple Services</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label>Tell us about your project</label>
+                <textarea placeholder="What are you building? What problem does it solve?"></textarea>
+              </div>
+              <button type="submit" class="btn-primary full-width">Send Project Brief</button>
+            </form>
+            <p id="successMsg"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ───── Footer ───── -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">
+            <img src="assets/img/logo.png" alt="FlowLead Logo" class="logo-img">
+            <span>FlowLead</span>
+          </div>
+          <p>Building software that scales — web, mobile, and everything in between.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/share/1BBBHoeTvt/" target="_blank" aria-label="Facebook"><i
+                class="bi bi-facebook"></i></a>
+            <a href="#" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="footer-links-grid">
+          <div class="f-col">
+            <h4>Services</h4>
+            <a href="#services">Web Development</a>
+            <a href="#services">App Development</a>
+            <a href="#services">Software Development</a>
+          </div>
+          <div class="f-col">
+            <h4>Company</h4>
+            <a href="#about">About Us</a>
+            <a href="#process">Our Process</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 FlowLead Solutions. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="assets/js/script.js"></script>
 </body>
+
 </html>
-
-
-
-
-
-          
