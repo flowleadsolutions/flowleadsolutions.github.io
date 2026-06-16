@@ -32,7 +32,33 @@
       <li><a href="../boldplumbing.com/contact.html">Contact</a></li>
     </ul>
     <a href="tel:+19797330626" class="nav-cta"><i class="bi bi-telephone-fill"></i> Call Now</a>
+    <button class="nav-hamburger" id="menuOpen" aria-label="Open menu">
+      <i class="bi bi-list"></i>
+    </button>
   </nav>
+
+  <!-- MOBILE NAV DRAWER -->
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-header">
+      <a href="../boldplumbing.com/index.html">
+        <img src="../boldplumbing.com/assets/img/logo.png" alt="BOLD Plumbing Logo" style="height: 50px; width: auto;">
+      </a>
+      <button class="mobile-nav-close" id="menuClose" aria-label="Close menu">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <ul>
+      <li><a href="../boldplumbing.com/about.html">About</a></li>
+      <li><a href="../boldplumbing.com/index.html#services">Services</a></li>
+      <li><a href="../boldplumbing.com/index.html#community">Community</a></li>
+      <li><a href="../boldplumbing.com/employment.html">Employment</a></li>
+      <li><a href="../boldplumbing.com/contact.html">Contact</a></li>
+    </ul>
+    <div class="mobile-nav-cta">
+      <a href="tel:+19797330626" class="mob-call"><i class="bi bi-telephone-fill"></i> Call 979-733-0626</a>
+      <a href="../boldplumbing.com/contact.html" class="mob-quote">Get a Free Quote</a>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -47,7 +73,7 @@
         right, the first time.</p>
       <div class="hero-btns">
         <a href="tel:+19797330626" class="btn-primary"><i class="bi bi-telephone-fill"></i> Call 979-733-0626</a>
-        <a href="https://boldplumbing.com" class="btn-outline">Get a Free Quote →</a>
+        <a href="../boldplumbing.com/contact.html" class="btn-outline">Get a Free Quote →</a>
       </div>
     </div>
 
@@ -72,57 +98,104 @@
   <section id="services" class="services-section">
     <div class="section-label">What We Do</div>
     <div class="section-title">Services Built for<br><em>Real Problems</em></div>
+    <p class="services-intro">The right plumbing repair at the right time can save you a lot of money and a lot of
+      remodeling time! We accept all major credit cards and offer a full range of services to keep your home or
+      business running smoothly.</p>
     <div class="services-grid">
+
       <div class="service-card">
         <span class="s-num">JOB / 01</span>
-        <span class="s-icon">
-          <img src="../boldplumbing.com/assets/img/binocular.png" style="width: 50px; height: auto;">
-        </span>
-        <h3>Camera Inspections</h3>
-        <p>Waterproof sewer & pipe cameras pinpoint blockages, cracks, root intrusion — without ever digging up your
+        <!-- <i class="bi bi-camera-video s-icon"></i> -->
+        <img src="../boldplumbing.com/assets/img/job/job-1.png" alt="Job 1" class="s-icon">
+        <h3>Video / Camera <br> Pipe Inspection</h3>
+        <p>Waterproof sewer & pipe cameras locate blockages, cracks, and root intrusion — without digging up your
           yard.</p>
       </div>
+
       <div class="service-card">
         <span class="s-num">JOB / 02</span>
-        <span class="s-icon">
-          <img src="../boldplumbing.com/assets/img/customer-support.png" style="width: 50px; height: auto;">
-        </span>
-        <h3>Valve & Cutoff Replacement</h3>
-        <p>All cutoff valves replaced with precision and speed. Frankie and Dakota know their craft inside out.</p>
+        <!-- <i class="bi bi-arrow-down-circle s-icon"></i> -->
+        <img src="../boldplumbing.com/assets/img/job/job-2.png" alt="Job 2" class="s-icon">
+        <h3>Sewer <br> Main</h3>
+        <p>Clean, install, replace, or repair your sewer main. We handle full-scope sewer work from assessment to
+          completion.</p>
       </div>
+
       <div class="service-card">
         <span class="s-num">JOB / 03</span>
-        <span class="s-icon">
-          <img src="../boldplumbing.com/assets/img/thermometer.png" style="width: 50px; height: auto;">
-        </span>
-        <h3>Water Heater Service</h3>
-        <p>Heating element replacement, full installs, and diagnostics — we'll get your hot water back fast.</p>
+        <!-- <i class="bi bi-filter s-icon"></i> -->
+        <img src="../boldplumbing.com/assets/img/job/job-3.png" alt="Job 3" class="s-icon">
+        <h3>Drain <br> Line</h3>
+        <p>Install, replace, or repair drain lines. Stubborn clogs cleared efficiently — preventing costly backups
+          before they start.</p>
       </div>
+
       <div class="service-card">
         <span class="s-num">JOB / 04</span>
-        <span class="s-icon">
-          <img src="../boldplumbing.com/assets/img/shower.png" style="width: 50px; height: auto;">
-        </span>
-        <h3>Sewer Line Replacement</h3>
-        <p>From assessment to full replacement of sewer lines — straight with you every step of the way.</p>
+        <!-- <i class="bi bi-wrench-adjustable s-icon"></i> -->
+        <img src="../boldplumbing.com/assets/img/job/job-4.png" alt="Job 4" class="s-icon">
+        <h3>Faucets, <br> Fixtures & Pipe</h3>
+        <p>Replace or repair faucets, fixtures, and piping of all kinds. Precision work done right the first time.</p>
       </div>
+
       <div class="service-card">
         <span class="s-num">JOB / 05</span>
-        <span class="s-icon">
-          <img src="../boldplumbing.com/assets/img/water-drop.png" style="width: 50px; height: auto;">
-        </span>
-        <h3>Drain Cleaning</h3>
-        <p>Stubborn clogs cleared efficiently. We prevent costly spring and summer backups before they happen.</p>
+        <!-- <i class="bi bi-thermometer-half s-icon"></i> -->
+        <img src="../boldplumbing.com/assets/img/job/job-5.png" alt="Job 5" class="s-icon">
+        <h3>Water Heater & <br> Tankless</h3>
+        <p>Replace or repair traditional and tankless water heaters. Heating element replacements, full installs, and
+          diagnostics.</p>
       </div>
+
       <div class="service-card">
         <span class="s-num">JOB / 06</span>
-        <span class="s-icon">
-          <img src="../boldplumbing.com/assets/img/house.png" style="width: 50px; height: auto;">
-        </span>
-        <h3>Spring Plumbing Checkup</h3>
-        <p>Comprehensive seasonal inspection to ensure your system is ready for the months ahead — early detection saves
-          money.</p>
+        <!-- <i class="bi bi-fire s-icon"></i> -->
+        <img src="../boldplumbing.com/assets/img/job/job-6.png" alt="Job 6" class="s-icon">
+        <h3>Natural Gas Test <br> & Inspection</h3>
+        <p>Professional natural gas testing and safety inspections to ensure your system meets code and operates
+          safely.</p>
       </div>
+
+      <div class="service-card">
+        <span class="s-num">JOB / 07</span>
+        <!-- <i class="bi bi-pipe s-icon"></i> -->
+        <img src="../boldplumbing.com/assets/img/job/job-7.png" alt="Job 7" class="s-icon">
+        <h3>Natural <br> Gas Piping</h3>
+        <p>Replace or repair natural gas piping — installed safely, correctly, and with full attention to code
+          compliance.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="s-num">JOB / 08</span>
+        <!-- <i class="bi bi-trash3 s-icon"></i> -->
+        <img src="../boldplumbing.com/assets/img/job/job-8.png" alt="Job 8" class="s-icon">
+        <h3>Garbage <br> Disposal</h3>
+        <p>Replace or repair garbage disposals quickly and cleanly. We'll have your kitchen running smoothly
+          again.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="s-num">JOB / 09</span>
+        <!-- <i class="bi bi-droplet-half s-icon"></i> -->
+        <img src="../boldplumbing.com/assets/img/job/job-9.png" alt="Job 9" class="s-icon">
+        <h3>Shower or <br> Bathtub</h3>
+        <p>Install or replace shower and bathtub systems. Done with care, minimal disruption, and lasting
+          results.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="s-num">JOB / 10</span>
+        <!-- <i class="bi bi-gear-wide-connected s-icon"></i> -->
+        <img src="../boldplumbing.com/assets/img/job/job-10.png" alt="Job 10" class="s-icon">
+        <h3>Boiler <br> Systems</h3>
+        <p>Replace or repair boiler systems for residential and commercial properties. Reliable work on complex
+          systems.</p>
+      </div>
+
+    </div>
+    <div class="services-footer">
+      <i class="bi bi-credit-card-2-front"></i>
+      <span>We accept all major credit cards</span>
     </div>
   </section>
 
@@ -257,7 +330,7 @@
     <div class="footer-top">
       <div>
         <div class="footer-logo">
-          <a href="../boldplumbing.com/contact.html">
+          <a href="../boldplumbing.com/index.html">
             <img src="../boldplumbing.com/assets/img/logo.png" alt="BOLD Plumbing Logo"
               style="height: 80px; width: auto;">
           </a>
@@ -293,17 +366,47 @@
         <ul>
           <li><a href="../boldplumbing.com/contact.html">1203 Travis St</a></li>
           <li><a href="../boldplumbing.com/contact.html">Columbus, TX 78934</a></li>
-          <li><a href="../boldplumbing.com/contact.html">Mon–Fri: 8AM–5PM</a></li>
+          <li><a href="#">Mon–Fri: 8AM–5PM</a></li>
           <li><a href="tel:+19797330626">979-733-0626</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 BOLD Plumbing, LLC. All rights reserved.</p>
+      <p>© 2026 BOLD Plumbing. All rights reserved.</p>
       <p class="badge">Developed with <i class="bi bi-heart-fill"></i> by <a href="https://flowleadsolutions.github.io/" target="_blank" rel="noopener noreferrer">FlowLead Solutions</a></p>
     </div>
   </footer>
 
+  <script src="../boldplumbing.com/assets/js/main.js"></script>
+
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
