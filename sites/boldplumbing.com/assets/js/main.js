@@ -18,3 +18,10 @@ mobileNav.querySelectorAll('a').forEach(a => {
     document.body.style.overflow = '';
   });
 });
+
+// ── NAV SCROLL BEHAVIOUR ──
+const nav = document.querySelector('nav');
+
+window.addEventListener('scroll', () => {
+  nav.style.top = window.scrollY > 0 ? '0' : '50px';
+}, { passive: true });

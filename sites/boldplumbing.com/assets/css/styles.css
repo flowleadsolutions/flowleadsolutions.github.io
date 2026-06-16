@@ -29,10 +29,31 @@ body {
   overflow-x: hidden;
 }
 
+
+.topbar {
+  height: 50px;
+  background: var(--orange);
+  text-align: center;
+}
+
+.topbar .topbar-item {
+  padding: 12px 0;
+}
+
+.topbar .topbar-item a {
+  font-size: 14px;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.topbar .topbar-item a:hover {
+  text-decoration: underline;
+}
+
 /* ── NAV ── */
 nav {
   position: fixed;
-  top: 0;
+  top: 50px;
   left: 0;
   width: 100%;
   z-index: 100;
@@ -103,7 +124,7 @@ nav {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
   align-items: center;
-  padding: 8rem 4rem 4rem;
+  padding: 8rem 5rem 4rem;
   position: relative;
   gap: 2rem;
 }
@@ -137,7 +158,7 @@ nav {
 
 .hero h1 {
   font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(3.2rem, 6.4vw, 5.8rem);
+  font-size: 70px;
   line-height: 1.02;
   letter-spacing: -0.01em;
   margin-bottom: 1.5rem;
@@ -153,7 +174,7 @@ nav {
 .hero p {
   font-size: 1.1rem;
   color: var(--gray);
-  max-width: 38ch;
+  max-width: 45ch;
   line-height: 1.7;
   margin-bottom: 2.5rem;
 }
@@ -299,7 +320,7 @@ section {
 
 .section-title {
   font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+  font-size: clamp(2.2rem, 4.6vw, 3rem);
   line-height: 1.05;
   letter-spacing: -0.01em;
   margin-bottom: 0.5rem;
@@ -1924,4 +1945,239 @@ footer {
   color: var(--ink);
   transition: color 0.2s;
   margin-right: 10px;
+}
+ 
+/* ── MAP SECTION ── */
+.map-section {
+  width: 100%;
+  height: 420px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+ 
+@media (max-width: 900px) {
+  .map-section {
+    height: 280px;
+  }
+}
+ 
+/* ── NAV SCROLL TRANSITION ── */
+nav {
+  transition: top 0.3s ease;
+}
+ 
+/* ── MISSION SECTION ── */
+.mission-section {
+  background: var(--white);
+  padding: 6rem 4rem;
+}
+ 
+.mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 5rem;
+  align-items: start;
+  margin-bottom: 4rem;
+}
+ 
+.mission-lead p {
+  font-size: 1rem;
+  color: var(--gray);
+  line-height: 1.8;
+  margin-top: 1.25rem;
+  max-width: 40ch;
+}
+ 
+.mission-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+ 
+.mission-pillar {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  padding: 1.75rem 1.5rem;
+  transition: border-color 0.25s, transform 0.25s;
+}
+ 
+.mission-pillar:hover {
+  border-color: var(--orange);
+  transform: translateY(-3px);
+}
+ 
+.mp-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--orange-tint);
+  border: 1px solid rgba(255, 76, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: var(--orange);
+  font-size: 1.2rem;
+}
+ 
+.mission-pillar h4 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+ 
+.mission-pillar p {
+  font-size: 0.88rem;
+  color: var(--gray);
+  line-height: 1.7;
+}
+ 
+.mission-banner {
+  border-left: 4px solid var(--orange);
+  background: var(--cream);
+  padding: 2rem 2.5rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+ 
+.mission-banner i {
+  color: var(--orange);
+  font-size: 2.2rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+ 
+.mission-banner p {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  line-height: 1.8;
+  font-style: italic;
+}
+ 
+@media (max-width: 900px) {
+  .mission-section {
+    padding: 3.5rem 1.5rem;
+  }
+ 
+  .mission-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+ 
+  .mission-lead p {
+    max-width: 100%;
+  }
+ 
+  .mission-banner {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+ 
+@media (max-width: 480px) {
+  .mission-pillars {
+    grid-template-columns: 1fr;
+  }
+}
+ 
+/* ── MISSION SECTION (updated layout) ── */
+.mission-section {
+  background: var(--white);
+  padding: 6rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+ 
+.mission-lead .section-title {
+  margin-top: 0.25rem;
+}
+ 
+.mission-reliable {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--orange);
+  padding: 2.5rem;
+}
+ 
+.mission-reliable h3 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+ 
+.mission-reliable p {
+  font-size: 0.96rem;
+  color: var(--ink-soft);
+  line-height: 1.85;
+  max-width: 88ch;
+}
+ 
+.mission-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+ 
+.mission-pillar {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  padding: 2rem;
+  transition: border-color 0.25s, transform 0.25s;
+}
+ 
+.mission-pillar:hover {
+  border-color: var(--orange);
+  transform: translateY(-3px);
+}
+ 
+.mp-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--orange-tint);
+  border: 1px solid rgba(255, 76, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: var(--orange);
+  font-size: 1.2rem;
+}
+ 
+.mission-pillar h4 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+ 
+.mission-pillar p {
+  font-size: 0.92rem;
+  color: var(--gray);
+  line-height: 1.75;
+}
+ 
+@media (max-width: 900px) {
+  .mission-section {
+    padding: 3.5rem 1.5rem;
+    gap: 2rem;
+  }
+ 
+  .mission-pillars {
+    grid-template-columns: 1fr;
+  }
+ 
+  .mission-reliable {
+    padding: 1.75rem;
+  }
 }
